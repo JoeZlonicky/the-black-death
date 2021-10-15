@@ -1,17 +1,45 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/fonts/ScheherazadeNew.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/CormorantGaramond-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/art/bacteria.png" type="Texture" id=3]
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.387597, 0.604651, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 0.523864 ), 0.0, 0.0, 0, 0, Vector2( 0.736842, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.764161 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+lifetime_randomness = 0.5
+emission_shape = 2
+emission_box_extents = Vector3( 640, 360, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+scale = 0.1
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 6 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 28
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 2 )
 
@@ -26,6 +54,18 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="Particles2D" parent="."]
+modulate = Color( 1, 1, 1, 0.180392 )
+position = Vector2( 640, 360 )
+amount = 25
+lifetime = 8.0
+preprocess = 2.0
+process_material = SubResource( 4 )
+texture = ExtResource( 3 )
 
 [node name="Title" type="Label" parent="."]
 anchor_top = 0.5
@@ -46,7 +86,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = -99.0
 margin_bottom = -17.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "An interactive narrative by Joe Zlonicky"
 align = 1
 __meta__ = {
@@ -70,7 +110,7 @@ __meta__ = {
 margin_right = 114.0
 margin_bottom = 46.0
 focus_mode = 0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Begin"
 flat = true
 
@@ -78,7 +118,7 @@ flat = true
 margin_top = 50.0
 margin_right = 114.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Settings"
 flat = true
 
@@ -86,6 +126,6 @@ flat = true
 margin_top = 100.0
 margin_right = 114.0
 margin_bottom = 146.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Quit"
 flat = true
