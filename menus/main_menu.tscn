@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/fonts/ScheherazadeNew.ttf" type="DynamicFontData" id=1]
@@ -30,8 +31,15 @@ angle_random = 1.0
 scale = 0.1
 scale_curve = SubResource( 8 )
 color_ramp = SubResource( 6 )
+=======
+[gd_scene load_steps=10 format=2]
 
-[sub_resource type="DynamicFont" id=1]
+[ext_resource path="res://assets/fonts/ScheherazadeNew.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/CormorantGaramond-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://ui/menu_button/menu_button.tscn" type="PackedScene" id=3]
+>>>>>>> Stashed changes
+
+[sub_resource type="DynamicFont" id=2]
 size = 80
 font_data = ExtResource( 1 )
 
@@ -39,9 +47,171 @@ font_data = ExtResource( 1 )
 size = 28
 font_data = ExtResource( 2 )
 
+<<<<<<< Updated upstream
 [sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 2 )
+=======
+[sub_resource type="Animation" id=4]
+resource_name = "default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_constants/separation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LeftArrow:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("RightArrow:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "mouse_entered"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_constants/separation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LeftArrow:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("RightArrow:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_constants/separation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LeftArrow:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("RightArrow:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "mouse_entered"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_constants/separation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LeftArrow:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("RightArrow:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+>>>>>>> Stashed changes
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -73,7 +243,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = -217.0
 margin_bottom = -53.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "BLACK DEATH"
 align = 1
 __meta__ = {
@@ -98,34 +268,113 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -57.0
-margin_top = -10.0
-margin_right = 57.0
-margin_bottom = 136.0
+margin_left = -111.0
+margin_top = -31.0
+margin_right = 111.0
+margin_bottom = 121.0
+custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="VBoxContainer"]
-margin_right = 114.0
+[node name="MenuButton" parent="VBoxContainer" instance=ExtResource( 3 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 222.0
 margin_bottom = 46.0
+<<<<<<< Updated upstream
 focus_mode = 0
 custom_fonts/font = SubResource( 3 )
-text = "Begin"
-flat = true
+=======
 
+[node name="LeftArrow" parent="VBoxContainer/MenuButton" index="0"]
+margin_left = 45.0
+margin_right = 69.0
+
+[node name="Button" parent="VBoxContainer/MenuButton" index="1"]
+margin_left = 69.0
+margin_right = 152.0
+>>>>>>> Stashed changes
+text = "Begin"
+
+<<<<<<< Updated upstream
 [node name="Button2" type="Button" parent="VBoxContainer"]
 margin_top = 50.0
 margin_right = 114.0
 margin_bottom = 96.0
 custom_fonts/font = SubResource( 3 )
-text = "Settings"
-flat = true
+=======
+[node name="RightArrow" parent="VBoxContainer/MenuButton" index="2"]
+margin_left = 152.0
+margin_right = 176.0
 
+[node name="MenuButton2" parent="VBoxContainer" instance=ExtResource( 3 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 46.0
+margin_right = 222.0
+margin_bottom = 92.0
+
+[node name="LeftArrow" parent="VBoxContainer/MenuButton2" index="0"]
+margin_left = 30.0
+margin_right = 54.0
+
+[node name="Button" parent="VBoxContainer/MenuButton2" index="1"]
+margin_left = 54.0
+margin_right = 168.0
+>>>>>>> Stashed changes
+text = "Settings"
+
+<<<<<<< Updated upstream
 [node name="Button3" type="Button" parent="VBoxContainer"]
 margin_top = 100.0
 margin_right = 114.0
 margin_bottom = 146.0
 custom_fonts/font = SubResource( 3 )
+=======
+[node name="RightArrow" parent="VBoxContainer/MenuButton2" index="2"]
+margin_left = 168.0
+margin_right = 192.0
+
+[node name="AnimationPlayer" parent="VBoxContainer/MenuButton2" index="3"]
+anims/default = SubResource( 4 )
+anims/mouse_entered = SubResource( 5 )
+
+[node name="MenuButton3" parent="VBoxContainer" instance=ExtResource( 3 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 92.0
+margin_right = 222.0
+margin_bottom = 138.0
+
+[node name="LeftArrow" parent="VBoxContainer/MenuButton3" index="0"]
+margin_left = 50.0
+margin_right = 74.0
+
+[node name="Button" parent="VBoxContainer/MenuButton3" index="1"]
+margin_left = 74.0
+margin_right = 147.0
+>>>>>>> Stashed changes
 text = "Quit"
-flat = true
+
+[node name="RightArrow" parent="VBoxContainer/MenuButton3" index="2"]
+margin_left = 147.0
+margin_right = 171.0
+
+[node name="AnimationPlayer" parent="VBoxContainer/MenuButton3" index="3"]
+anims/default = SubResource( 6 )
+anims/mouse_entered = SubResource( 7 )
+
+[editable path="VBoxContainer/MenuButton"]
+[editable path="VBoxContainer/MenuButton2"]
+[editable path="VBoxContainer/MenuButton3"]
