@@ -1,0 +1,512 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://menus/settings_menu/settings_menu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/menu_button/menu_button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/art/bacteria.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/ScheherazadeNew/ScheherazadeNew.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://menus/main_menu/main_menu.gd" type="Script" id=5]
+[ext_resource path="res://assets/music/black_death.wav" type="AudioStream" id=6]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.387597, 0.604651, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.523864 ), 0.0, 0.0, 0, 0, Vector2( 0.736842, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.764161 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+lifetime_randomness = 0.5
+emission_shape = 2
+emission_box_extents = Vector3( 640, 360, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+scale = 0.1
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 80
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 30
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "fade_from_settings"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Buttons:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Title:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SettingsMenu:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SettingsMenu:visible")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Title:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Buttons:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("FadeRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SettingsMenu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SettingsMenu:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Title:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Buttons:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Buttons:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Title:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+tracks/0/type = "value"
+tracks/0/path = NodePath("FadeRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "next_scene"
+} ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Buttons:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Title:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SettingsMenu:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SettingsMenu:visible")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Title:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Buttons:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BacteriaParticles" type="Particles2D" parent="."]
+modulate = Color( 1, 1, 1, 0.180392 )
+position = Vector2( 640, 360 )
+amount = 25
+lifetime = 8.0
+preprocess = 2.0
+process_material = SubResource( 5 )
+texture = ExtResource( 3 )
+
+[node name="Title" type="Label" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -217.0
+margin_bottom = -53.0
+custom_fonts/font = SubResource( 6 )
+text = "BLACK DEATH"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Subtitle" type="Label" parent="Title"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 28.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 7 )
+text = "An interactive narrative by Joe Zlonicky"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -111.0
+margin_top = -31.0
+margin_right = 111.0
+margin_bottom = 121.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BeginButton" parent="Buttons" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 222.0
+margin_bottom = 46.0
+
+[node name="LeftArrow" parent="Buttons/BeginButton" index="0"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 45.0
+margin_right = 69.0
+
+[node name="Button" parent="Buttons/BeginButton" index="1"]
+margin_left = 69.0
+margin_right = 152.0
+text = "Begin"
+
+[node name="RightArrow" parent="Buttons/BeginButton" index="2"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 152.0
+margin_right = 176.0
+
+[node name="SettingsButton" parent="Buttons" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 46.0
+margin_right = 222.0
+margin_bottom = 92.0
+
+[node name="LeftArrow" parent="Buttons/SettingsButton" index="0"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 30.0
+margin_right = 54.0
+
+[node name="Button" parent="Buttons/SettingsButton" index="1"]
+margin_left = 54.0
+margin_right = 168.0
+text = "Settings"
+
+[node name="RightArrow" parent="Buttons/SettingsButton" index="2"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 168.0
+margin_right = 192.0
+
+[node name="QuitButton" parent="Buttons" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 92.0
+margin_right = 222.0
+margin_bottom = 138.0
+
+[node name="LeftArrow" parent="Buttons/QuitButton" index="0"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 50.0
+margin_right = 74.0
+
+[node name="Button" parent="Buttons/QuitButton" index="1"]
+margin_left = 74.0
+margin_right = 147.0
+text = "Quit"
+
+[node name="RightArrow" parent="Buttons/QuitButton" index="2"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 147.0
+margin_right = 171.0
+
+[node name="SettingsMenu" parent="." instance=ExtResource( 1 )]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -172.0
+margin_right = 173.0
+margin_bottom = 281.0
+
+[node name="Title2" parent="SettingsMenu" index="0"]
+margin_top = 141.0
+margin_bottom = 275.0
+
+[node name="Fullscreen" parent="SettingsMenu" index="1"]
+margin_top = 285.0
+margin_bottom = 331.0
+
+[node name="Music" parent="SettingsMenu" index="2"]
+margin_top = 341.0
+margin_bottom = 387.0
+
+[node name="SFX" parent="SettingsMenu" index="3"]
+margin_top = 397.0
+margin_bottom = 443.0
+
+[node name="CenterContainer" parent="SettingsMenu" index="4"]
+margin_top = 453.0
+margin_bottom = 499.0
+
+[node name="FadeRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TransitionPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fade_in"
+anims/fade_from_settings = SubResource( 8 )
+anims/fade_in = SubResource( 9 )
+anims/fade_out = SubResource( 10 )
+anims/fade_to_settings = SubResource( 11 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -20.0
+autoplay = true
+bus = "Music"
+
+[connection signal="pressed" from="Buttons/BeginButton/Button" to="." method="_on_BeginButton_pressed"]
+[connection signal="pressed" from="Buttons/SettingsButton/Button" to="." method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton/Button" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="SettingsMenu/CenterContainer/BackButton/Button" to="." method="_on_SettingsBackButton_pressed"]
+
+[editable path="Buttons/BeginButton"]
+[editable path="Buttons/SettingsButton"]
+[editable path="Buttons/QuitButton"]
+[editable path="SettingsMenu"]
+[editable path="SettingsMenu/Fullscreen/FullscreenButton"]
+[editable path="SettingsMenu/Music/MusicButton"]
+[editable path="SettingsMenu/SFX/SFXButton"]
+[editable path="SettingsMenu/CenterContainer/BackButton"]

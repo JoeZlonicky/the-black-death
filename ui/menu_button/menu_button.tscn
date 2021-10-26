@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/art/arrow.png" type="Texture" id=1]
-[ext_resource path="res://assets/fonts/CormorantGaramond-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/CormorantGaramond/CormorantGaramond-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://ui/menu_button/menu_button.gd" type="Script" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=1]
@@ -50,7 +50,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "button_up"
 length = 0.1
 tracks/0/type = "value"
@@ -90,7 +90,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:custom_constants/separation")
@@ -129,7 +129,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:custom_constants/separation")
@@ -185,16 +185,15 @@ __meta__ = {
 }
 
 [node name="LeftArrow" type="TextureRect" parent="."]
-margin_left = 5.0
-margin_right = 29.0
+margin_right = 24.0
 margin_bottom = 46.0
 texture = ExtResource( 1 )
 stretch_mode = 4
 flip_h = true
 
 [node name="Button" type="Button" parent="."]
-margin_left = 29.0
-margin_right = 129.0
+margin_left = 24.0
+margin_right = 124.0
 margin_bottom = 46.0
 custom_styles/focus = SubResource( 1 )
 custom_fonts/font = SubResource( 2 )
@@ -205,8 +204,8 @@ __meta__ = {
 }
 
 [node name="RightArrow" type="TextureRect" parent="."]
-margin_left = 129.0
-margin_right = 153.0
+margin_left = 124.0
+margin_right = 148.0
 margin_bottom = 46.0
 texture = ExtResource( 1 )
 stretch_mode = 4
@@ -214,9 +213,9 @@ stretch_mode = 4
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"
 anims/button_down = SubResource( 3 )
-anims/button_up = SubResource( 6 )
-anims/default = SubResource( 4 )
-anims/mouse_entered = SubResource( 5 )
+anims/button_up = SubResource( 4 )
+anims/default = SubResource( 5 )
+anims/mouse_entered = SubResource( 6 )
 
 [connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]

@@ -1,0 +1,207 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ui/menu_button/menu_button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://menus/settings_menu/settings_menu.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/ScheherazadeNew/ScheherazadeNew.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/CormorantGaramond/CormorantGaramond-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+extra_spacing_bottom = -30
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 4 )
+
+[node name="SettingsMenu" type="VBoxContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -172.5
+margin_top = -360.0
+margin_right = 172.5
+margin_bottom = 360.0
+custom_constants/separation = 10
+alignment = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title2" type="Label" parent="."]
+margin_top = 181.0
+margin_right = 345.0
+margin_bottom = 315.0
+custom_fonts/font = SubResource( 1 )
+text = "SETTINGS"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fullscreen" type="HBoxContainer" parent="."]
+margin_top = 325.0
+margin_right = 345.0
+margin_bottom = 371.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Fullscreen"]
+margin_top = 3.0
+margin_right = 161.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Fullscreen:"
+align = 1
+
+[node name="FullscreenButton" parent="Fullscreen" instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 165.0
+margin_top = 0.0
+margin_right = 345.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 180, 0 )
+size_flags_horizontal = 3
+
+[node name="LeftArrow" parent="Fullscreen/FullscreenButton" index="0"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 18.0
+margin_right = 42.0
+
+[node name="Button" parent="Fullscreen/FullscreenButton" index="1"]
+margin_left = 42.0
+margin_right = 138.0
+text = "Enable"
+
+[node name="RightArrow" parent="Fullscreen/FullscreenButton" index="2"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 138.0
+margin_right = 162.0
+
+[node name="Music" type="HBoxContainer" parent="."]
+margin_top = 381.0
+margin_right = 345.0
+margin_bottom = 427.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Music"]
+margin_top = 3.0
+margin_right = 161.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Music:"
+align = 1
+
+[node name="MusicButton" parent="Music" instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 165.0
+margin_top = 0.0
+margin_right = 345.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 180, 0 )
+size_flags_horizontal = 3
+
+[node name="LeftArrow" parent="Music/MusicButton" index="0"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 30.0
+margin_right = 54.0
+
+[node name="Button" parent="Music/MusicButton" index="1"]
+margin_left = 54.0
+margin_right = 125.0
+text = "100%"
+
+[node name="RightArrow" parent="Music/MusicButton" index="2"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 125.0
+margin_right = 149.0
+
+[node name="SFX" type="HBoxContainer" parent="."]
+margin_top = 437.0
+margin_right = 345.0
+margin_bottom = 483.0
+alignment = 1
+
+[node name="Label" type="Label" parent="SFX"]
+margin_top = 3.0
+margin_right = 161.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "SFX:"
+align = 1
+
+[node name="SFXButton" parent="SFX" instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 165.0
+margin_top = 0.0
+margin_right = 345.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 180, 0 )
+size_flags_horizontal = 3
+
+[node name="LeftArrow" parent="SFX/SFXButton" index="0"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 30.0
+margin_right = 54.0
+
+[node name="Button" parent="SFX/SFXButton" index="1"]
+margin_left = 54.0
+margin_right = 125.0
+text = "100%"
+
+[node name="RightArrow" parent="SFX/SFXButton" index="2"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 125.0
+margin_right = 149.0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_top = 493.0
+margin_right = 345.0
+margin_bottom = 539.0
+
+[node name="BackButton" parent="CenterContainer" instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 112.0
+margin_top = 0.0
+margin_right = 232.0
+margin_bottom = 46.0
+
+[node name="LeftArrow" parent="CenterContainer/BackButton" index="0"]
+self_modulate = Color( 1, 1, 1, 0 )
+
+[node name="Button" parent="CenterContainer/BackButton" index="1"]
+margin_right = 96.0
+text = "Back"
+
+[node name="RightArrow" parent="CenterContainer/BackButton" index="2"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 96.0
+margin_right = 120.0
+
+[connection signal="pressed" from="Fullscreen/FullscreenButton/Button" to="." method="_on_FullscreenButton_pressed"]
+[connection signal="pressed" from="Music/MusicButton/Button" to="." method="_on_MusicButton_pressed"]
+[connection signal="pressed" from="SFX/SFXButton/Button" to="." method="_on_SFXButton_pressed"]
+
+[editable path="Fullscreen/FullscreenButton"]
+[editable path="Music/MusicButton"]
+[editable path="SFX/SFXButton"]
+[editable path="CenterContainer/BackButton"]
