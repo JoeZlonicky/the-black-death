@@ -17,5 +17,5 @@ func _physics_process(delta):
 			velocity = Vector2(0, 0)
 	
 	velocity.y = min(velocity.y + gravity * delta, terminal_velocity)
-	move_and_slide(velocity, Vector2.UP)
+	velocity = move_and_slide(velocity, Vector2.UP)
 	

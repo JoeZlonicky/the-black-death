@@ -1,26 +1,337 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://flea/flea.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/art/plague_doctor.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/dialogue_box.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/tree.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/particle.png" type="Texture" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 448, 8 )
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+adjustment_enabled = true
+adjustment_brightness = 0.9
+adjustment_contrast = 1.1
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.260163, 0.674797, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0.506818 ), 0.0, 0.565739, 0, 0, Vector2( 0.501859, 0.788636 ), 0.366819, 0.366819, 0, 0, Vector2( 1, 0.979545 ), 0.344175, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 2
+emission_box_extents = Vector3( 640, 360, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 1.5
+scale_random = 0.5
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[sub_resource type="StreamTexture" id=7]
+flags = 4
+load_path = "res://.import/particle.png-a428e996560c6428b24427d372f4e8d5.stex"
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 640, 8 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+emission_shape = 2
+emission_box_extents = Vector3( 640, 360, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.4
+scale_random = 0.25
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
 
 [node name="Game" type="Node2D"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 616, 680 )
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 1 )
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
-margin_left = -448.0
-margin_top = -8.0
-margin_right = 448.0
-margin_bottom = 8.0
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Trees2" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0.121569 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tree" type="TextureRect" parent="Trees2"]
+margin_left = 168.0
+margin_top = -72.0
+margin_right = 424.0
+margin_bottom = 456.0
+rect_scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tree4" type="TextureRect" parent="Trees2"]
+margin_left = -48.0
+margin_top = -32.0
+margin_right = 208.0
+margin_bottom = 496.0
+rect_rotation = -8.43142
+rect_scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tree5" type="TextureRect" parent="Trees2"]
+margin_left = 336.0
+margin_top = -56.0
+margin_right = 592.0
+margin_bottom = 472.0
+rect_rotation = 10.5283
+rect_scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tree6" type="TextureRect" parent="Trees2"]
+margin_left = 760.0
+margin_top = -16.0
+margin_right = 1016.0
+margin_bottom = 512.0
+rect_rotation = -15.0
+rect_scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tree2" type="TextureRect" parent="Trees2"]
+margin_left = 576.0
+margin_top = -40.0
+margin_right = 832.0
+margin_bottom = 488.0
+rect_scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tree3" type="TextureRect" parent="Trees2"]
+margin_left = 920.0
+margin_top = -64.0
+margin_right = 1176.0
+margin_bottom = 464.0
+rect_scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Trees" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0.337255 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tree" type="TextureRect" parent="Trees"]
+margin_left = 80.0
+margin_top = -16.0
+margin_right = 336.0
+margin_bottom = 512.0
+texture = ExtResource( 4 )
+
+[node name="Tree2" type="TextureRect" parent="Trees"]
+margin_left = 496.0
+margin_right = 752.0
+margin_bottom = 528.0
+texture = ExtResource( 4 )
+
+[node name="Tree3" type="TextureRect" parent="Trees"]
+margin_left = 896.0
+margin_right = 1152.0
+margin_bottom = 528.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackParticles" type="Particles2D" parent="."]
+modulate = Color( 1, 1, 1, 0.160784 )
+position = Vector2( 640, 360 )
+lifetime = 6.0
+process_material = SubResource( 6 )
+texture = SubResource( 7 )
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2( 640, 432 )
+
+[node name="Ground" type="ColorRect" parent="Ground"]
+margin_left = -640.0
+margin_top = -8.00003
+margin_right = 640.0
+margin_bottom = 288.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource( 8 )
+
 [node name="Flea" parent="." instance=ExtResource( 1 )]
-position = Vector2( 192, 656 )
+position = Vector2( 204, 372 )
+
+[node name="Grass" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Grass"]
+position = Vector2( 104, 424 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, -48, 8, 0, 8, 24, 0, 24, 0, 0 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Grass"]
+position = Vector2( 120, 424 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, -48, 8, 0, 8, 24, 0, 24, 0, 0 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="Grass"]
+position = Vector2( 320, 408 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, -48, 8, 0, 8, 24, 0, 24, 0, 0 )
+
+[node name="Polygon2D4" type="Polygon2D" parent="Grass"]
+position = Vector2( 336, 408 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, -48, 8, 0, 8, 24, 0, 24, 0, 0 )
+
+[node name="Polygon2D5" type="Polygon2D" parent="Grass"]
+position = Vector2( 568, 432 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, -48, 8, 0, 8, 24, 0, 24, 0, 0 )
+
+[node name="Polygon2D6" type="Polygon2D" parent="Grass"]
+position = Vector2( 584, 432 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, -48, 8, 0, 8, 24, 0, 24, 0, 0 )
+
+[node name="Polygon2D7" type="Polygon2D" parent="Grass"]
+position = Vector2( 752, 416 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, -48, 8, 0, 8, 24, 0, 24, 0, 0 )
+
+[node name="Polygon2D8" type="Polygon2D" parent="Grass"]
+position = Vector2( 768, 416 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, -48, 8, 0, 8, 24, 0, 24, 0, 0 )
+
+[node name="Polygon2D9" type="Polygon2D" parent="Grass"]
+position = Vector2( 920, 440 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, -48, 8, 0, 8, 24, 0, 24, 0, 0 )
+
+[node name="Polygon2D10" type="Polygon2D" parent="Grass"]
+position = Vector2( 936, 440 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, -48, 8, 0, 8, 24, 0, 24, 0, 0 )
+
+[node name="Polygon2D11" type="Polygon2D" parent="Grass"]
+position = Vector2( 1120, 424 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, -48, 8, 0, 8, 24, 0, 24, 0, 0 )
+
+[node name="Polygon2D12" type="Polygon2D" parent="Grass"]
+position = Vector2( 1136, 424 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8, -48, 8, 0, 8, 24, 0, 24, 0, 0 )
+
+[node name="Rocks" type="Node2D" parent="."]
+
+[node name="Polygon2D13" type="Polygon2D" parent="Rocks"]
+position = Vector2( 328, 424 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, -8, 16, -8, 24, 0, 16, 8, -16, 8, -24, 0, -16, -16 )
+
+[node name="Polygon2D14" type="Polygon2D" parent="Rocks"]
+position = Vector2( 88, 416 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, -8, 16, -8, 24, 0, 16, 8, -16, 8, -24, 0, -16, -16 )
+
+[node name="Polygon2D15" type="Polygon2D" parent="Rocks"]
+position = Vector2( 600, 424 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, -8, 16, -8, 24, 0, 16, 8, -16, 8, -24, 0, -16, -16 )
+
+[node name="Polygon2D16" type="Polygon2D" parent="Rocks"]
+position = Vector2( 864, 424 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, -8, 16, -8, 24, 0, 16, 8, -16, 8, -24, 0, -16, -16 )
+
+[node name="Polygon2D17" type="Polygon2D" parent="Rocks"]
+position = Vector2( 1080, 424 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, -8, 16, -8, 24, 0, 16, 8, -16, 8, -24, 0, -16, -16 )
+
+[node name="FrontParticles" type="Particles2D" parent="."]
+modulate = Color( 1, 1, 1, 0.294118 )
+position = Vector2( 640, 360 )
+amount = 16
+lifetime = 6.0
+process_material = SubResource( 9 )
+texture = ExtResource( 5 )
+
+[node name="PlagueDoctor" type="TextureRect" parent="."]
+margin_left = -0.832458
+margin_top = 405.22
+margin_right = 319.168
+margin_bottom = 725.22
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogueBox" type="TextureRect" parent="."]
+margin_left = 232.0
+margin_top = 492.983
+margin_right = 1088.0
+margin_bottom = 692.983
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
