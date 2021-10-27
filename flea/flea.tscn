@@ -23,3 +23,8 @@ margin_bottom = 8.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_bottom = 700
