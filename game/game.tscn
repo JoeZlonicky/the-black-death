@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://flea/flea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/art/plague_doctor.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://assets/art/tree.png" type="Texture" id=4]
 [ext_resource path="res://assets/art/particle.png" type="Texture" id=5]
 [ext_resource path="res://assets/art/marmot.png" type="Texture" id=6]
+[ext_resource path="res://assets/fonts/Teko/Teko-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://ui/question_mark_button/question_mark_button.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -79,6 +81,10 @@ color_ramp = SubResource( 3 )
 [sub_resource type="StreamTexture" id=11]
 flags = 4
 load_path = "res://.import/particle.png-a428e996560c6428b24427d372f4e8d5.stex"
+
+[sub_resource type="DynamicFont" id=12]
+size = 32
+font_data = ExtResource( 7 )
 
 [node name="Game" type="Node2D"]
 
@@ -186,8 +192,8 @@ texture = SubResource( 7 )
 [node name="Flea" parent="." instance=ExtResource( 1 )]
 position = Vector2( 204, 372 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 872, 376 )
+[node name="Marmot" type="Sprite" parent="."]
+position = Vector2( 925.501, 373.328 )
 texture = ExtResource( 6 )
 
 [node name="Ground" type="StaticBody2D" parent="."]
@@ -535,3 +541,14 @@ texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label" type="Label" parent="Overlay/DialogueBox"]
+margin_left = 78.0
+margin_top = 36.0
+margin_right = 793.0
+margin_bottom = 165.0
+custom_fonts/font = SubResource( 12 )
+text = "This is a test"
+autowrap = true
+
+[node name="QuestionMarkButton" parent="." instance=ExtResource( 8 )]
