@@ -1,9 +1,42 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://flea/flea.gd" type="Script" id=1]
+[ext_resource path="res://assets/art/flea.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.637745 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "jump"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.637745 ), Vector2( 0.5, 0.9 ), Vector2( 0.5, 0.637745 ) ]
+}
 
 [node name="Flea" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -15,16 +48,20 @@ terminal_velocity = 1000.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -8.0
-margin_top = -8.0
-margin_right = 8.0
-margin_bottom = 8.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.426071, -8.11798 )
+scale = Vector2( 0.5, 0.637745 )
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( -32, -3 )
+flip_h = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 limit_left = 0
 limit_bottom = 700
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/default = SubResource( 3 )
+anims/jump = SubResource( 2 )
