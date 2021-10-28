@@ -1,14 +1,17 @@
 extends TextureButton
 
 
-export (String, MULTILINE) var text
-
 const DEFAULT_TRANSPARENCY = 0.25
 const HOVERED_TRANSPARENCY = 0.6
 
 
 func _ready():
 	self_modulate.a = DEFAULT_TRANSPARENCY
+
+
+
+func fade_in():
+	$FadeAnimator.play("fade_in")
 
 
 func _on_mouse_entered():
@@ -34,4 +37,5 @@ func _on_button_up():
 func _on_pressed():
 	$FlashAnimation.stop()
 	$FloatAnimation.stop()
-	$FadeAnimator.play("fade")
+	$FadeAnimator.play("fade_out")
+	disabled = true

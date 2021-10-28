@@ -19,4 +19,4 @@ func _on_SettingsBackButton_pressed():
 
 
 func next_scene():
-	var _ret = get_tree().change_scene("res://narrative_scenes/narrative_scene.tscn")
+	var _ret = get_tree().change_scene("res://game/game.tscn")

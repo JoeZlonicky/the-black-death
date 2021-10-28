@@ -1,0 +1,149 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://menus/pause_menu/pause_menu.gd" type="Script" id=1]
+[ext_resource path="res://ui/menu_button/menu_button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://menus/settings_menu/settings_menu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/fonts/ScheherazadeNew/ScheherazadeNew.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+extra_spacing_bottom = -20
+font_data = ExtResource( 4 )
+
+[node name="PauseMenu" type="ColorRect"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.721569 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Content" type="VBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -360.0
+margin_bottom = 200.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Content"]
+margin_top = 133.0
+margin_right = 1280.0
+margin_bottom = 277.0
+custom_fonts/font = SubResource( 1 )
+text = "PAUSED"
+align = 1
+
+[node name="ResumeButton" parent="Content" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 281.0
+margin_right = 1280.0
+margin_bottom = 327.0
+custom_constants/separation = -5
+
+[node name="LeftArrow" parent="Content/ResumeButton" index="0"]
+margin_left = 565.0
+margin_right = 589.0
+
+[node name="Button" parent="Content/ResumeButton" index="1"]
+margin_left = 584.0
+margin_right = 695.0
+text = "Resume"
+
+[node name="RightArrow" parent="Content/ResumeButton" index="2"]
+margin_left = 690.0
+margin_right = 714.0
+
+[node name="SettingsButton" parent="Content" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 331.0
+margin_right = 1280.0
+margin_bottom = 377.0
+
+[node name="LeftArrow" parent="Content/SettingsButton" index="0"]
+margin_left = 559.0
+margin_right = 583.0
+
+[node name="Button" parent="Content/SettingsButton" index="1"]
+margin_left = 583.0
+margin_right = 697.0
+text = "Settings"
+
+[node name="RightArrow" parent="Content/SettingsButton" index="2"]
+margin_left = 697.0
+margin_right = 721.0
+
+[node name="ReturnToMainMenuButton" parent="Content" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 381.0
+margin_right = 1280.0
+margin_bottom = 427.0
+
+[node name="LeftArrow" parent="Content/ReturnToMainMenuButton" index="0"]
+margin_left = 471.0
+margin_right = 495.0
+
+[node name="Button" parent="Content/ReturnToMainMenuButton" index="1"]
+margin_left = 495.0
+margin_right = 784.0
+text = "Return to Main Menu"
+
+[node name="RightArrow" parent="Content/ReturnToMainMenuButton" index="2"]
+margin_left = 784.0
+margin_right = 808.0
+
+[node name="SettingsMenu" parent="." instance=ExtResource( 3 )]
+pause_mode = 2
+visible = false
+margin_bottom = 264.0
+
+[node name="Title" parent="SettingsMenu" index="0"]
+margin_top = 133.0
+margin_bottom = 267.0
+
+[node name="Fullscreen" parent="SettingsMenu" index="1"]
+margin_top = 277.0
+margin_bottom = 323.0
+
+[node name="Music" parent="SettingsMenu" index="2"]
+margin_top = 333.0
+margin_bottom = 379.0
+
+[node name="SFX" parent="SettingsMenu" index="3"]
+margin_top = 389.0
+margin_bottom = 435.0
+
+[node name="CenterContainer" parent="SettingsMenu" index="4"]
+margin_top = 445.0
+margin_bottom = 491.0
+
+[connection signal="pressed" from="Content/ResumeButton/Button" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="Content/SettingsButton/Button" to="." method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="Content/ReturnToMainMenuButton/Button" to="." method="_on_ReturnToMainMenuButton_pressed"]
+[connection signal="pressed" from="SettingsMenu/CenterContainer/BackButton/Button" to="." method="_on_SettingsBackButton_pressed"]
+
+[editable path="Content/ResumeButton"]
+[editable path="Content/SettingsButton"]
+[editable path="Content/ReturnToMainMenuButton"]
+[editable path="SettingsMenu"]
+[editable path="SettingsMenu/Fullscreen/FullscreenButton"]
+[editable path="SettingsMenu/Music/MusicButton"]
+[editable path="SettingsMenu/SFX/SFXButton"]
+[editable path="SettingsMenu/CenterContainer/BackButton"]
