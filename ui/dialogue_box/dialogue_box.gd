@@ -22,20 +22,18 @@ func _physics_process(delta):
 	if visible and $Label.visible_characters < $Label.text.length():
 		text_progress += delta * text_speed
 		$Label.visible_characters = int(text_progress)
-	elif visible:
+	elif visible and dialogue_queue:
 		$Prompt.visible = true
 
 
 func _on_gui_input(event):
-	if event.is_action_pressed("left_click") :
+	if event.is_action_pressed("left_click"):
 		if $Label.visible_characters < $Label.text.length():
 			text_progress = $Label.text.length()
 			$Label.visible_characters = -1
 		elif dialogue_queue:
 			$Label.text = dialogue_queue.pop_front()
 			reset_text_progress()
-		else:
-			visible = false
 
 
 func reset_text_progress():
