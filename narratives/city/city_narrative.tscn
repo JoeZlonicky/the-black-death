@@ -37,7 +37,7 @@ color_ramp = SubResource( 2 )
 flags = 4
 load_path = "res://.import/particle.png-a428e996560c6428b24427d372f4e8d5.stex"
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 2
 emission_box_extents = Vector3( 640, 360, 1 )
 flag_disable_z = true
@@ -425,7 +425,7 @@ amount = 16
 lifetime = 6.0
 preprocess = 6.0
 visibility_rect = Rect2( -1280, 0, 2560, 200 )
-process_material = SubResource( 8 )
+process_material = SubResource( 7 )
 texture = ExtResource( 3 )
 
 [node name="Fade" parent="Overlay" index="3" instance=ExtResource( 5 )]
