@@ -8,6 +8,7 @@ export (float) var terminal_velocity
 
 var velocity := Vector2()
 
+onready var camera = $Camera2D
 
 func _physics_process(delta):
 	if is_on_floor():

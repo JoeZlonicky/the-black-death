@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Black Death"
-run/main_scene="res://game/game.tscn"
+run/main_scene="res://narratives/forest/forest_narrative.tscn"
 config/icon="res://assets/art/icon.png"
 
 [display]

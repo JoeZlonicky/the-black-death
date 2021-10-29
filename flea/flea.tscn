@@ -37,7 +37,9 @@ tracks/0/keys = {
 "values": [ Vector2( 0.25, 0.319 ), Vector2( 0.25, 0.45 ), Vector2( 0.25, 0.319 ) ]
 }
 
-[node name="Flea" type="KinematicBody2D"]
+[node name="Flea" type="KinematicBody2D" groups=[
+"flea",
+]]
 script = ExtResource( 1 )
 speed = 120.0
 jump_force = 200.0

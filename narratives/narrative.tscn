@@ -1,14 +1,8 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://game/game.gd" type="Script" id=1]
-[ext_resource path="res://assets/art/marmot.png" type="Texture" id=2]
-[ext_resource path="res://assets/art/tree.png" type="Texture" id=3]
-[ext_resource path="res://assets/art/particle.png" type="Texture" id=4]
-[ext_resource path="res://flea/flea.tscn" type="PackedScene" id=5]
-[ext_resource path="res://secret/secret.tscn" type="PackedScene" id=6]
+[ext_resource path="res://narratives/narrative.gd" type="Script" id=1]
 [ext_resource path="res://ui/dialogue_box/dialogue_box.tscn" type="PackedScene" id=7]
 [ext_resource path="res://menus/pause_menu/pause_menu.tscn" type="PackedScene" id=8]
-[ext_resource path="res://ui/hidden_label/hidden_label.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/art/plague_doctor.png" type="Texture" id=10]
 
 [sub_resource type="Environment" id=1]
@@ -18,71 +12,22 @@ adjustment_enabled = true
 adjustment_brightness = 0.9
 adjustment_contrast = 1.1
 
-[sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.260163, 0.674797, 1 )
-colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
-
-[sub_resource type="Curve" id=4]
-_data = [ Vector2( 0, 0.506818 ), 0.0, 0.565739, 0, 0, Vector2( 0.501859, 0.788636 ), 0.366819, 0.366819, 0, 0, Vector2( 1, 0.979545 ), 0.344175, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
-
-[sub_resource type="ParticlesMaterial" id=6]
-emission_shape = 2
-emission_box_extents = Vector3( 640, 360, 1 )
-flag_disable_z = true
-direction = Vector3( 0, -1, 0 )
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 20.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 1.5
-scale_random = 0.5
-scale_curve = SubResource( 5 )
-color_ramp = SubResource( 3 )
-
-[sub_resource type="StreamTexture" id=7]
-flags = 4
-load_path = "res://.import/particle.png-a428e996560c6428b24427d372f4e8d5.stex"
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 1280, 8 )
-
-[sub_resource type="ParticlesMaterial" id=9]
-emission_shape = 2
-emission_box_extents = Vector3( 640, 360, 1 )
-flag_disable_z = true
-direction = Vector3( 0, -1, 0 )
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 20.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.4
-scale_random = 0.25
-scale_curve = SubResource( 5 )
-color_ramp = SubResource( 3 )
-
-[sub_resource type="ParticlesMaterial" id=10]
-emission_shape = 2
-emission_box_extents = Vector3( 640, 360, 1 )
-flag_disable_z = true
-direction = Vector3( 0, -1, 0 )
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 20.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.4
-scale_random = 0.25
-scale_curve = SubResource( 5 )
-color_ramp = SubResource( 3 )
-
-[sub_resource type="StreamTexture" id=11]
-flags = 4
-load_path = "res://.import/particle.png-a428e996560c6428b24427d372f4e8d5.stex"
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -0.832, 405 ), Vector2( -0.832, 407 ) ]
+}
 
 [node name="Narrative" type="Node2D"]
 script = ExtResource( 1 )
@@ -90,468 +35,29 @@ script = ExtResource( 1 )
 [node name="Environment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-layer = -1
-
-[node name="Background" type="ColorRect" parent="ParallaxBackground"]
-margin_right = 1280.0
-margin_bottom = 720.0
-color = Color( 0.12549, 0.12549, 0.12549, 1 )
+[node name="Secrets" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="FarFarTrees" type="ParallaxLayer" parent="ParallaxBackground"]
-modulate = Color( 1, 1, 1, 0.0823529 )
-motion_scale = Vector2( 0.2, 1 )
-motion_mirroring = Vector2( 1280, 0 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/FarFarTrees"]
-position = Vector2( 945.606, 313.308 )
-rotation = -0.261799
-scale = Vector2( 3, 3 )
-texture = ExtResource( 3 )
-
-[node name="Sprite4" type="Sprite" parent="ParallaxBackground/FarFarTrees"]
-position = Vector2( 1103.12, 267.923 )
-rotation = 0.261799
-scale = Vector2( 3, 3 )
-texture = ExtResource( 3 )
-
-[node name="Sprite2" type="Sprite" parent="ParallaxBackground/FarFarTrees"]
-position = Vector2( 392.758, 294.02 )
-rotation = 0.718271
-scale = Vector2( 3, 3 )
-texture = ExtResource( 3 )
-
-[node name="Sprite3" type="Sprite" parent="ParallaxBackground/FarFarTrees"]
-position = Vector2( 138.046, 195.132 )
-scale = Vector2( 3, 3 )
-texture = ExtResource( 3 )
-
-[node name="FarTrees" type="ParallaxLayer" parent="ParallaxBackground"]
-modulate = Color( 1, 1, 1, 0.231373 )
-motion_scale = Vector2( 0.3, 1 )
-motion_mirroring = Vector2( 1280, 0 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/FarTrees"]
-position = Vector2( 1064, 312 )
-rotation = -0.261799
-scale = Vector2( 2, 2 )
-texture = ExtResource( 3 )
-
-[node name="Sprite2" type="Sprite" parent="ParallaxBackground/FarTrees"]
-position = Vector2( 237.112, 298.007 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 3 )
-
-[node name="Sprite3" type="Sprite" parent="ParallaxBackground/FarTrees"]
-position = Vector2( 632, 264 )
-rotation = 0.785397
-scale = Vector2( 2, 2 )
-texture = ExtResource( 3 )
-
-[node name="NearTrees" type="ParallaxLayer" parent="ParallaxBackground"]
-modulate = Color( 1, 1, 1, 0.533333 )
-motion_scale = Vector2( 0.5, 1 )
-motion_mirroring = Vector2( 1280, 0 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/NearTrees"]
-position = Vector2( 184, 184 )
-rotation = -0.261799
-texture = ExtResource( 3 )
-
-[node name="Sprite2" type="Sprite" parent="ParallaxBackground/NearTrees"]
-position = Vector2( 624, 208 )
-rotation = 0.261799
-texture = ExtResource( 3 )
-
-[node name="Sprite3" type="Sprite" parent="ParallaxBackground/NearTrees"]
-position = Vector2( 1080, 200 )
-texture = ExtResource( 3 )
-
-[node name="BackParticles" type="Particles2D" parent="."]
-modulate = Color( 1, 1, 1, 0.160784 )
-position = Vector2( 640, 360 )
-lifetime = 6.0
-preprocess = 6.0
-visibility_rect = Rect2( -1280, 0, 2560, 200 )
-process_material = SubResource( 6 )
-texture = SubResource( 7 )
-
-[node name="BackParticles2" type="Particles2D" parent="."]
-modulate = Color( 1, 1, 1, 0.160784 )
-position = Vector2( 1920, 360 )
-lifetime = 6.0
-preprocess = 6.0
-visibility_rect = Rect2( -1280, 0, 2560, 200 )
-process_material = SubResource( 6 )
-texture = SubResource( 7 )
-
-[node name="Flea" parent="." instance=ExtResource( 5 )]
-position = Vector2( 204, 372 )
-
-[node name="Marmot" type="Sprite" parent="."]
-position = Vector2( 925.501, 373.328 )
-texture = ExtResource( 2 )
-
-[node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2( 640, 432 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 640, 0 )
-shape = SubResource( 8 )
-
-[node name="ParallaxForeground" type="ParallaxBackground" parent="."]
-layer = 0
-
-[node name="Ground" type="ParallaxLayer" parent="ParallaxForeground"]
-motion_mirroring = Vector2( 1280, 0 )
-
-[node name="Ground2" type="ColorRect" parent="ParallaxForeground/Ground"]
-margin_top = 424.0
-margin_right = 1280.0
-margin_bottom = 720.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Rocks" type="ParallaxLayer" parent="ParallaxForeground"]
-motion_mirroring = Vector2( 1280, 0 )
-
-[node name="Rock" type="Polygon2D" parent="ParallaxForeground/Rocks"]
-position = Vector2( 328, 424 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( 0, -8, 16, -8, 24, 0, 16, 8, -16, 8, -24, 0, -16, -16 )
-
-[node name="Rock6" type="Polygon2D" parent="ParallaxForeground/Rocks"]
-position = Vector2( 848, 424 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( 0, -8, 16, -8, 24, 0, 16, 8, -16, 8, -24, 0, -16, -16 )
-
-[node name="Rock8" type="Polygon2D" parent="ParallaxForeground/Rocks"]
-position = Vector2( 1096, 424 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( 0, -8, 16, -8, 24, 0, 16, 8, -16, 8, -24, 0, -16, -16 )
-
-[node name="Rock9" type="Polygon2D" parent="ParallaxForeground/Rocks"]
-position = Vector2( 1136, 432 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( 0, -8, 16, -8, 24, 0, 16, 8, -16, 8, -24, 0, -16, -16 )
-
-[node name="Rock10" type="Polygon2D" parent="ParallaxForeground/Rocks"]
-position = Vector2( 552, 424 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( 0, -8, 16, -8, 24, 0, 16, 8, -16, 8, -24, 0, -16, -16 )
-
-[node name="Rock2" type="Polygon2D" parent="ParallaxForeground/Rocks"]
-position = Vector2( 128, 424 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( 0, -8, 16, -8, 24, 0, 16, 8, -16, 8, -24, 0, -16, -16 )
-
-[node name="Rock3" type="Polygon2D" parent="ParallaxForeground/Rocks"]
-position = Vector2( 152, 424 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( 0, -8, 16, -8, 24, 0, 16, 8, -16, 8, -24, 0, -16, -16 )
-
-[node name="Rock4" type="Polygon2D" parent="ParallaxForeground/Rocks"]
-position = Vector2( 568, 424 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( 0, -8, 16, -16, 24, 0, 16, 8, -16, 8, -24, 0, -16, -8 )
-
-[node name="Rock5" type="Polygon2D" parent="ParallaxForeground/Rocks"]
-position = Vector2( 464, 424 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( 0, -8, 16, -16, 24, 0, 16, 8, -16, 8, -24, 0, -16, -8 )
-
-[node name="Rock7" type="Polygon2D" parent="ParallaxForeground/Rocks"]
-position = Vector2( 1248, 424 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( 0, -8, 16, -16, 24, 0, 16, 8, -16, 8, -24, 0, -16, -8 )
-
-[node name="Grass" type="ParallaxLayer" parent="ParallaxForeground"]
-motion_mirroring = Vector2( 1280, 0 )
-
-[node name="Grass" type="Node2D" parent="ParallaxForeground/Grass"]
-position = Vector2( 144, 408 )
-
-[node name="Leaf" type="Polygon2D" parent="ParallaxForeground/Grass/Grass"]
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8, 8, 0, 8, 0, 0 )
-
-[node name="Leaf2" type="Polygon2D" parent="ParallaxForeground/Grass/Grass"]
-position = Vector2( 16, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -0.000106812, -40, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Leaf3" type="Polygon2D" parent="ParallaxForeground/Grass/Grass"]
-position = Vector2( 24, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Grass2" type="Node2D" parent="ParallaxForeground/Grass"]
-position = Vector2( 272, 424 )
-
-[node name="Leaf" type="Polygon2D" parent="ParallaxForeground/Grass/Grass2"]
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8, 8, 0, 8, 0, 0 )
-
-[node name="Leaf2" type="Polygon2D" parent="ParallaxForeground/Grass/Grass2"]
-position = Vector2( 16, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -0.000106812, -40, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Leaf3" type="Polygon2D" parent="ParallaxForeground/Grass/Grass2"]
-position = Vector2( 24, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Grass3" type="Node2D" parent="ParallaxForeground/Grass"]
-position = Vector2( 440, 416 )
-
-[node name="Leaf" type="Polygon2D" parent="ParallaxForeground/Grass/Grass3"]
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8, 8, 0, 8, 0, 0 )
-
-[node name="Leaf2" type="Polygon2D" parent="ParallaxForeground/Grass/Grass3"]
-position = Vector2( 16, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -0.000106812, -40, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Leaf3" type="Polygon2D" parent="ParallaxForeground/Grass/Grass3"]
-position = Vector2( 24, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Grass4" type="Node2D" parent="ParallaxForeground/Grass"]
-position = Vector2( 600, 424 )
-
-[node name="Leaf" type="Polygon2D" parent="ParallaxForeground/Grass/Grass4"]
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8, 8, 0, 8, 0, 0 )
-
-[node name="Leaf2" type="Polygon2D" parent="ParallaxForeground/Grass/Grass4"]
-position = Vector2( 16, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -0.000106812, -40, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Leaf3" type="Polygon2D" parent="ParallaxForeground/Grass/Grass4"]
-position = Vector2( 24, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Grass5" type="Node2D" parent="ParallaxForeground/Grass"]
-position = Vector2( 736, 416 )
-
-[node name="Leaf" type="Polygon2D" parent="ParallaxForeground/Grass/Grass5"]
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8, 8, 0, 8, 0, 0 )
-
-[node name="Leaf2" type="Polygon2D" parent="ParallaxForeground/Grass/Grass5"]
-position = Vector2( 16, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -0.000106812, -40, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Leaf3" type="Polygon2D" parent="ParallaxForeground/Grass/Grass5"]
-position = Vector2( 24, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Grass6" type="Node2D" parent="ParallaxForeground/Grass"]
-position = Vector2( 896, 424 )
-
-[node name="Leaf" type="Polygon2D" parent="ParallaxForeground/Grass/Grass6"]
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8, 8, 0, 8, 0, 0 )
-
-[node name="Leaf2" type="Polygon2D" parent="ParallaxForeground/Grass/Grass6"]
-position = Vector2( 16, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -0.000106812, -40, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Leaf3" type="Polygon2D" parent="ParallaxForeground/Grass/Grass6"]
-position = Vector2( 24, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Grass7" type="Node2D" parent="ParallaxForeground/Grass"]
-position = Vector2( 1032, 432 )
-
-[node name="Leaf" type="Polygon2D" parent="ParallaxForeground/Grass/Grass7"]
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8, 8, 0, 8, 0, 0 )
-
-[node name="Leaf2" type="Polygon2D" parent="ParallaxForeground/Grass/Grass7"]
-position = Vector2( 16, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -0.000106812, -40, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Leaf3" type="Polygon2D" parent="ParallaxForeground/Grass/Grass7"]
-position = Vector2( 24, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Grass8" type="Node2D" parent="ParallaxForeground/Grass"]
-position = Vector2( 1112, 416 )
-
-[node name="Leaf" type="Polygon2D" parent="ParallaxForeground/Grass/Grass8"]
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8, 8, 0, 8, 0, 0 )
-
-[node name="Leaf2" type="Polygon2D" parent="ParallaxForeground/Grass/Grass8"]
-position = Vector2( 16, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -0.000106812, -40, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Leaf3" type="Polygon2D" parent="ParallaxForeground/Grass/Grass8"]
-position = Vector2( 24, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Grass9" type="Node2D" parent="ParallaxForeground/Grass"]
-position = Vector2( 1240, 416 )
-
-[node name="Leaf" type="Polygon2D" parent="ParallaxForeground/Grass/Grass9"]
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8, 8, 0, 8, 0, 0 )
-
-[node name="Leaf2" type="Polygon2D" parent="ParallaxForeground/Grass/Grass9"]
-position = Vector2( 16, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -0.000106812, -40, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="Leaf3" type="Polygon2D" parent="ParallaxForeground/Grass/Grass9"]
-position = Vector2( 24, 0 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-color = Color( 0, 0, 0, 1 )
-antialiased = true
-polygon = PoolVector2Array( -8, -48, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
-
-[node name="FrontParticles" type="Particles2D" parent="."]
-modulate = Color( 1, 1, 1, 0.294118 )
-position = Vector2( 640, 360 )
-amount = 16
-lifetime = 6.0
-preprocess = 6.0
-visibility_rect = Rect2( -1280, 0, 2560, 200 )
-process_material = SubResource( 9 )
-texture = ExtResource( 4 )
-
-[node name="FrontParticles2" type="Particles2D" parent="."]
-modulate = Color( 1, 1, 1, 0.294118 )
-position = Vector2( 1920, 360 )
-amount = 16
-lifetime = 6.0
-preprocess = 6.0
-visibility_rect = Rect2( -1280, 0, 2560, 200 )
-process_material = SubResource( 10 )
-texture = SubResource( 11 )
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 
 [node name="PlagueDoctor" type="TextureRect" parent="Overlay"]
-margin_left = -0.832458
-margin_top = 405.22
+margin_left = -0.832
+margin_top = 406.0
 margin_right = 319.168
-margin_bottom = 725.22
+margin_bottom = 726.0
 texture = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Overlay/PlagueDoctor"]
+anims/idle = SubResource( 2 )
+
 [node name="DialogueBox" parent="Overlay" instance=ExtResource( 7 )]
 
 [node name="PauseMenu" parent="Overlay" instance=ExtResource( 8 )]
 visible = false
-
-[node name="Secret" parent="." instance=ExtResource( 6 )]
-margin_left = 560.0
-margin_top = 168.0
-margin_right = 624.0
-margin_bottom = 232.0
-text = [ "Test 1" ]
-
-[node name="HiddenLabel" parent="Secret/Hidden" index="0" instance=ExtResource( 9 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -76.0
-margin_top = -23.5
-margin_right = 76.0
-margin_bottom = 23.5
-text = "Hold 'D' to move"
-
-[editable path="Secret"]
