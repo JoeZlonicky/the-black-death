@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://narratives/narrative.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/art/box.png" type="Texture" id=2]
 [ext_resource path="res://secret/secret.tscn" type="PackedScene" id=3]
 [ext_resource path="res://narratives/fade.tscn" type="PackedScene" id=4]
+[ext_resource path="res://narratives/travelling/travelling_narrative.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "rattle"
@@ -52,6 +53,26 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, -2.0, 2.0, -5.0, 5.0 ]
 }
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends \"res://secret/secret.gd\"
+
+
+
+func fade_in():
+	print(\"Fading in\")
+	.fade_in()
+"
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends \"res://secret/secret.gd\"
+
+"
+
+[sub_resource type="GDScript" id=8]
+script/source = "extends \"res://secret/secret.gd\"
+
+"
 
 [sub_resource type="Animation" id=4]
 length = 7.0
@@ -183,6 +204,7 @@ tracks/4/keys = {
 }
 
 [node name="TravellngNarrative" instance=ExtResource( 1 )]
+script = ExtResource( 5 )
 
 [node name="Box" type="Sprite" parent="." index="1"]
 position = Vector2( 624, 320 )
@@ -211,30 +233,61 @@ autoplay = "rattle"
 anims/rattle = SubResource( 3 )
 
 [node name="Secret" parent="Secrets" index="0" instance=ExtResource( 3 )]
-margin_left = 116.0
-margin_top = 188.0
-margin_right = 180.0
-margin_bottom = 252.0
-text = [ "These babies roll
-They roll!" ]
+margin_left = 172.0
+margin_top = 108.0
+margin_right = 236.0
+margin_bottom = 172.0
+text = [ "The Black Death hit during a time of prospering trade." ]
+
+[node name="Secret2" parent="Secrets" index="1" instance=ExtResource( 3 )]
+visible = false
+margin_left = 980.0
+margin_top = 108.0
+margin_right = 1044.0
+margin_bottom = 172.0
+script = SubResource( 6 )
+text = [ "Many goods, including these infected pelts, were transported through the Silk Road." ]
+
+[node name="Secret3" parent="Secrets" index="2" instance=ExtResource( 3 )]
+visible = false
+margin_left = 172.0
+margin_top = 268.0
+margin_right = 236.0
+margin_bottom = 332.0
+script = SubResource( 7 )
+text = [ "The Silk Road ran all the way across Asia to Kaffa, a major port city." ]
+
+[node name="Secret4" parent="Secrets" index="3" instance=ExtResource( 3 )]
+visible = false
+margin_left = 980.0
+margin_top = 268.0
+margin_right = 1044.0
+margin_bottom = 332.0
+script = SubResource( 8 )
+text = [ "Although it was a long journey, some fleas survived the trip, arriving in Kaffa ready to continue the spread of disease..." ]
 
 [node name="Fade" parent="Overlay" index="3" instance=ExtResource( 4 )]
+visible = false
 
 [node name="HiddenLabel" parent="Overlay/Fade" index="0"]
-visible = false
-modulate = Color( 1, 1, 1, 0.2 )
+modulate = Color( 1, 1, 1, 1 )
 margin_left = -197.0
 margin_right = 197.0
 text = "In the back of a wagon..."
 
 [node name="AnimationPlayer" parent="Overlay/Fade" index="1"]
+autoplay = ""
 anims/fade_in = SubResource( 4 )
 anims/fade_out = SubResource( 5 )
 
 [node name="Music" parent="." index="6"]
 volume_db = -80.0
 
+[connection signal="uncovered" from="Secrets/Secret" to="Secrets/Secret2" method="fade_in"]
 [connection signal="uncovered" from="Secrets/Secret" to="." method="_on_Secret_uncovered"]
+[connection signal="uncovered" from="Secrets/Secret2" to="." method="_on_Secret_uncovered"]
+[connection signal="uncovered" from="Secrets/Secret3" to="." method="_on_Secret_uncovered"]
+[connection signal="uncovered" from="Secrets/Secret4" to="." method="_on_Secret_uncovered"]
 [connection signal="finished" from="Overlay/DialogueBox" to="." method="_on_DialogueBox_finished"]
 
 [editable path="Overlay/Fade"]

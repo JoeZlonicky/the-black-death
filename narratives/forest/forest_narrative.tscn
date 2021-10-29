@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://narratives/narrative.tscn" type="PackedScene" id=1]
 [ext_resource path="res://narratives/fade.tscn" type="PackedScene" id=2]
@@ -42,7 +42,7 @@ flags = 4
 load_path = "res://.import/particle.png-a428e996560c6428b24427d372f4e8d5.stex"
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 1280, 8 )
+extents = Vector2( 5832, 8 )
 
 [sub_resource type="Gradient" id=20]
 offsets = PoolRealArray( 0, 0.260163, 0.674797, 1 )
@@ -140,6 +140,60 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 3,
 "values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hidden:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hidden:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=28]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hidden:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hidden:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -386,7 +440,7 @@ texture = SubResource( 19 )
 position = Vector2( 48, 424 )
 
 [node name="Marmot" parent="." index="3" instance=ExtResource( 3 )]
-position = Vector2( 1624, 376 )
+position = Vector2( 6432, 376 )
 
 [node name="Ground" type="StaticBody2D" parent="." index="4"]
 position = Vector2( 640, 432 )
@@ -706,7 +760,7 @@ __meta__ = {
 }
 
 [node name="End" type="Area2D" parent="." index="6"]
-position = Vector2( 2120, 344 )
+position = Vector2( 9136, 320 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="End" index="0"]
 shape = SubResource( 11 )
@@ -725,16 +779,9 @@ margin_right = 73.875
 margin_bottom = -4.132
 text = "Click me"
 
-[node name="QuestionMarkButton" parent="Secrets/Secret1" index="1"]
-self_modulate = Color( 1, 1, 1, 0 )
-
 [node name="FadeAnimator" parent="Secrets/Secret1/QuestionMarkButton" index="3"]
 anims/fade_in = SubResource( 25 )
 anims/fade_out = SubResource( 26 )
-
-[node name="Hidden" parent="Secrets/Secret1" index="2"]
-visible = false
-modulate = Color( 1, 1, 1, 0 )
 
 [node name="HiddenLabel" parent="Secrets/Secret1/Hidden" index="0" instance=ExtResource( 8 )]
 anchor_left = 0.5
@@ -747,14 +794,91 @@ margin_right = 76.0
 margin_bottom = 23.5
 text = "Hold 'd' to move"
 
-[node name="Fade" parent="Overlay" index="3" instance=ExtResource( 2 )]
+[node name="Secret2" parent="Secrets" index="1" instance=ExtResource( 10 )]
+margin_left = 1284.0
+margin_top = 172.0
+margin_right = 1348.0
+margin_bottom = 236.0
+text = [ "Although many associate the Black Death with rats, fleas are the vector of the pathogen." ]
 
-[node name="HiddenLabel" parent="Overlay/Fade" index="0"]
+[node name="HiddenLabel" parent="Secrets/Secret2/Hidden" index="0" instance=ExtResource( 8 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -106.0
+margin_top = -33.5
+margin_right = 106.0
+margin_bottom = 33.5
+text = "Click all of the secrets
+to get the full story"
+
+[node name="Secret3" parent="Secrets" index="2" instance=ExtResource( 10 )]
+margin_left = 1940.0
+margin_top = 108.0
+margin_right = 2004.0
+margin_bottom = 172.0
+text = [ "The pathogen, the bacteria \"Yersinia pestis\", lived in the bloodstreams of various mammels." ]
+
+[node name="AnimationPlayer" parent="Secrets/Secret3" index="2"]
+anims/default = SubResource( 27 )
+anims/fade_hidden = SubResource( 28 )
+
+[node name="Secret4" parent="Secrets" index="3" instance=ExtResource( 10 )]
+margin_left = 2628.0
+margin_top = 180.0
+margin_right = 2692.0
+margin_bottom = 244.0
+text = [ "After a flea fed on an infected host, the bacteria would begin to reproduce within the flea's digestive system." ]
+
+[node name="Secret5" parent="Secrets" index="4" instance=ExtResource( 10 )]
+margin_left = 3276.0
+margin_top = 116.0
+margin_right = 3340.0
+margin_bottom = 180.0
+text = [ "The flea's digestive system would become blocked, causing the flea to starve." ]
+
+[node name="Secret6" parent="Secrets" index="5" instance=ExtResource( 10 )]
+margin_left = 3884.0
+margin_top = 180.0
+margin_right = 3948.0
+margin_bottom = 244.0
+text = [ "In an attempt to save itself from starvation, the flea would go into an eating frenzy, hopping from host to host." ]
+
+[node name="Secret7" parent="Secrets" index="6" instance=ExtResource( 10 )]
+margin_left = 4612.0
+margin_top = 116.0
+margin_right = 4676.0
+margin_bottom = 180.0
+text = [ "With its digestive system being blocked, infected blood from previous hosts would get ejected into future hosts, passing on the infection." ]
+
+[node name="Secret8" parent="Secrets" index="7" instance=ExtResource( 10 )]
+margin_left = 5508.0
+margin_top = 172.0
+margin_right = 5572.0
+margin_bottom = 236.0
+text = [ "The initial spread of the pathogen was believed to have started somewhere in Asia, where it spread rapidly through the marmot population." ]
+
+[node name="Secret9" parent="Secrets" index="8" instance=ExtResource( 10 )]
+margin_left = 8084.0
+margin_top = 108.0
+margin_right = 8148.0
+margin_bottom = 172.0
+text = [ "Trappers would find marmots killed of by the disease and skin them for their pelts. Unbeknownst to them, these pelts still carried the fleas..." ]
+
+[node name="Fade" parent="Overlay" index="3" instance=ExtResource( 2 )]
 visible = false
 
+[node name="HiddenLabel" parent="Overlay/Fade" index="0"]
+modulate = Color( 1, 1, 1, 1 )
+
 [node name="AnimationPlayer" parent="Overlay/Fade" index="1"]
+autoplay = ""
 anims/fade_in = SubResource( 12 )
 anims/fade_out = SubResource( 13 )
+
+[node name="Music" parent="." index="9"]
+volume_db = -80.0
 
 [connection signal="killed" from="Marmot" to="." method="_on_Marmot_killed"]
 [connection signal="body_entered" from="End" to="." method="_on_End_body_entered"]
@@ -762,4 +886,6 @@ anims/fade_out = SubResource( 13 )
 
 [editable path="Secrets/Secret1"]
 [editable path="Secrets/Secret1/QuestionMarkButton"]
+[editable path="Secrets/Secret2"]
+[editable path="Secrets/Secret3"]
 [editable path="Overlay/Fade"]

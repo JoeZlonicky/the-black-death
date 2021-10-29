@@ -5,14 +5,14 @@ signal finished
 
 var dialogue_queue = []
 var text_progress = 0.0
-var text_speed = 12
+var text_speed = 16
 
 func _ready():
 	visible = false
 
 
 func add_text_to_queue(text):
-	if visible:
+	if visible and $Label.visible_characters < $Label.text.length():
 		dialogue_queue.append(text)
 	else:
 		$Label.text = text

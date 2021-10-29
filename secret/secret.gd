@@ -12,5 +12,7 @@ func _on_QuestionMarkButton_pressed():
 	$AnimationPlayer.play("fade_hidden")
 	emit_signal("uncovered")
 
+
 func fade_in():
+	visible = true
 	$QuestionMarkButton.fade_in()

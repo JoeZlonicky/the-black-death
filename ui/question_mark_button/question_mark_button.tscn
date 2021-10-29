@@ -104,7 +104,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.25, 0.25 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 resource_name = "fade_in"
 length = 0.8
 tracks/0/type = "value"
@@ -117,7 +117,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 3,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.25 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:visible")
@@ -132,8 +132,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "fade_out"
+[sub_resource type="Animation" id=9]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:self_modulate")
@@ -161,8 +160,6 @@ tracks/1/keys = {
 }
 
 [node name="QuestionMarkButton" type="TextureButton"]
-visible = false
-self_modulate = Color( 1, 1, 1, 0 )
 material = SubResource( 1 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -196,8 +193,8 @@ anims/press = SubResource( 6 )
 anims/unhovered = SubResource( 7 )
 
 [node name="FadeAnimator" type="AnimationPlayer" parent="."]
-anims/fade_in = SubResource( 9 )
-anims/fade_out = SubResource( 8 )
+anims/fade_in = SubResource( 8 )
+anims/fade_out = SubResource( 9 )
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]
