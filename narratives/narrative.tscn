@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://narratives/narrative.gd" type="Script" id=1]
+[ext_resource path="res://assets/music/black_death.wav" type="AudioStream" id=2]
 [ext_resource path="res://ui/dialogue_box/dialogue_box.tscn" type="PackedScene" id=7]
 [ext_resource path="res://menus/pause_menu/pause_menu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/art/plague_doctor.png" type="Texture" id=10]
@@ -61,3 +62,10 @@ anims/idle = SubResource( 2 )
 
 [node name="PauseMenu" parent="Overlay" instance=ExtResource( 8 )]
 visible = false
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 2 )
+volume_db = -20.0
+autoplay = true
+bus = "Music"

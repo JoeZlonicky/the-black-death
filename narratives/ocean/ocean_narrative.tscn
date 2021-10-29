@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://narratives/narrative.tscn" type="PackedScene" id=1]
 [ext_resource path="res://boat/boat.tscn" type="PackedScene" id=2]
@@ -6,8 +6,11 @@
 [ext_resource path="res://assets/art/moon.png" type="Texture" id=4]
 [ext_resource path="res://assets/art/waves.png" type="Texture" id=5]
 [ext_resource path="res://narratives/fade.tscn" type="PackedScene" id=6]
+[ext_resource path="res://narratives/ocean/ocean_narrative.gd" type="Script" id=7]
+[ext_resource path="res://assets/fonts/ScheherazadeNew/ScheherazadeNew.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://ui/hidden_label/hidden_label.tscn" type="PackedScene" id=9]
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=1]
 resource_name = "wave"
 length = 2.0
 loop = true
@@ -24,7 +27,7 @@ tracks/0/keys = {
 "values": [ -5.0, 0.0, 5.0, 0.0, -5.0 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=2]
 resource_name = "wave"
 loop = true
 tracks/0/type = "value"
@@ -40,7 +43,7 @@ tracks/0/keys = {
 "values": [ 0.0, 5.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=3]
 resource_name = "wave"
 length = 2.0
 loop = true
@@ -57,7 +60,7 @@ tracks/0/keys = {
 "values": [ 0.0, -5.0, 0.0, 5.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=4]
 resource_name = "wave"
 loop = true
 tracks/0/type = "value"
@@ -73,18 +76,18 @@ tracks/0/keys = {
 "values": [ 0.0, 5.0, 0.0 ]
 }
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Gradient" id=16]
 offsets = PoolRealArray( 0, 0.260163, 0.674797, 1 )
-colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+colors = PoolColorArray( 1, 1, 1, 0, 0.380859, 0.380859, 0.380859, 1, 0.357422, 0.357422, 0.357422, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture" id=17]
+gradient = SubResource( 16 )
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=18]
 _data = [ Vector2( 0, 0.506818 ), 0.0, 0.565739, 0, 0, Vector2( 0.501859, 0.788636 ), 0.366819, 0.366819, 0, 0, Vector2( 1, 0.979545 ), 0.344175, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="CurveTexture" id=19]
+curve = SubResource( 18 )
 
 [sub_resource type="ParticlesMaterial" id=5]
 emission_shape = 2
@@ -95,17 +98,33 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 20.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 1.5
+scale = 2.5
 scale_random = 0.5
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 2 )
+scale_curve = SubResource( 19 )
+color_ramp = SubResource( 17 )
 
 [sub_resource type="StreamTexture" id=6]
 flags = 4
 load_path = "res://.import/particle.png-a428e996560c6428b24427d372f4e8d5.stex"
 
-[sub_resource type="Animation" id=9]
-resource_name = "wave"
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 10, 72 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 2
+emission_box_extents = Vector3( 640, 360, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.4
+scale_random = 0.25
+scale_curve = SubResource( 19 )
+color_ramp = SubResource( 17 )
+
+[sub_resource type="Animation" id=11]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -121,8 +140,7 @@ tracks/0/keys = {
 "values": [ 0.0, -5.0, 0.0, 5.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "wave"
+[sub_resource type="Animation" id=12]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:motion_offset:y")
@@ -137,21 +155,177 @@ tracks/0/keys = {
 "values": [ 0.0, 5.0, 0.0 ]
 }
 
-[sub_resource type="ParticlesMaterial" id=8]
-emission_shape = 2
-emission_box_extents = Vector3( 640, 360, 1 )
-flag_disable_z = true
-direction = Vector3( 0, -1, 0 )
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 20.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.4
-scale_random = 0.25
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 2 )
+[sub_resource type="DynamicFont" id=21]
+size = 52
+font_data = ExtResource( 8 )
+
+[sub_resource type="Animation" id=14]
+length = 7.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5, 7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HiddenLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HiddenLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../../Music:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 5, 7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -80.0, -80.0, -20.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("HiddenLabel2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "fade_out"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("HiddenLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../../Music:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2.9, 6.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -20.0, -20.0, -80.0 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("../..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 10 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "change_scene"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("HiddenLabel2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("HiddenLabel2:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 4, 5.8, 7.3, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="OceanNarrative" instance=ExtResource( 1 )]
+script = ExtResource( 7 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="1"]
 
@@ -182,11 +356,11 @@ texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground/FarWater" index="1"]
 autoplay = "wave"
-anims/wave = SubResource( 11 )
+anims/wave = SubResource( 1 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="ParallaxBackground/FarWater" index="2"]
 autoplay = "wave"
-anims/wave = SubResource( 12 )
+anims/wave = SubResource( 2 )
 
 [node name="CloseWater" type="ParallaxLayer" parent="ParallaxBackground" index="2"]
 modulate = Color( 1, 1, 1, 0.168627 )
@@ -199,27 +373,65 @@ texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground/CloseWater" index="1"]
 autoplay = "wave"
-anims/wave = SubResource( 13 )
+anims/wave = SubResource( 3 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="ParallaxBackground/CloseWater" index="2"]
 autoplay = "wave"
-anims/wave = SubResource( 14 )
+anims/wave = SubResource( 4 )
 
-[node name="BackgroundParticles" type="Particles2D" parent="." index="2"]
-modulate = Color( 1, 1, 1, 0.160784 )
+[node name="Particles2" type="ParallaxLayer" parent="ParallaxBackground" index="3"]
+motion_scale = Vector2( 0.5, 1 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="BackgroundParticles" type="Particles2D" parent="ParallaxBackground/Particles2" index="0"]
+modulate = Color( 0.513726, 0.513726, 0.513726, 0.431373 )
 position = Vector2( 640, 360 )
+amount = 16
 lifetime = 6.0
 preprocess = 6.0
-visibility_rect = Rect2( -1280, 0, 2560, 200 )
+visibility_rect = Rect2( -3000, 0, 6000, 200 )
 process_material = SubResource( 5 )
 texture = SubResource( 6 )
 
-[node name="Boat" parent="." index="3" instance=ExtResource( 2 )]
+[node name="Particles" type="ParallaxLayer" parent="ParallaxBackground" index="4"]
+motion_scale = Vector2( 0.8, 1 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="BackgroundParticles" type="Particles2D" parent="ParallaxBackground/Particles" index="0"]
+modulate = Color( 1, 1, 1, 0.160784 )
+position = Vector2( 640, 360 )
+amount = 16
+lifetime = 6.0
+preprocess = 6.0
+visibility_rect = Rect2( -3000, 0, 6000, 200 )
+process_material = SubResource( 5 )
+texture = SubResource( 6 )
+
+[node name="Boat" parent="." index="2" instance=ExtResource( 2 )]
+
+[node name="End" type="Area2D" parent="." index="3"]
+position = Vector2( 1264, 344 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="End" index="0"]
+shape = SubResource( 20 )
 
 [node name="ParallaxForeground" type="ParallaxBackground" parent="." index="4"]
 layer = 0
 
-[node name="Ground" type="ParallaxLayer" parent="ParallaxForeground" index="0"]
+[node name="Particles" type="ParallaxLayer" parent="ParallaxForeground" index="0"]
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="ForegroundParticles" type="Particles2D" parent="ParallaxForeground/Particles" index="0"]
+modulate = Color( 1, 1, 1, 0.294118 )
+position = Vector2( 640, 360 )
+amount = 32
+lifetime = 6.0
+preprocess = 6.0
+visibility_rect = Rect2( -3000, 0, 6000, 200 )
+process_material = SubResource( 7 )
+texture = ExtResource( 3 )
+
+[node name="Ground" type="ParallaxLayer" parent="ParallaxForeground" index="1"]
 motion_mirroring = Vector2( 1280, 0 )
 
 [node name="ColorRect" type="ColorRect" parent="ParallaxForeground/Ground" index="0"]
@@ -231,7 +443,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CloseWater" type="ParallaxLayer" parent="ParallaxForeground" index="1"]
+[node name="CloseWater" type="ParallaxLayer" parent="ParallaxForeground" index="2"]
 motion_mirroring = Vector2( 1280, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxForeground/CloseWater" index="0"]
@@ -240,31 +452,39 @@ texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxForeground/CloseWater" index="1"]
 autoplay = "wave"
-anims/wave = SubResource( 9 )
+anims/wave = SubResource( 11 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="ParallaxForeground/CloseWater" index="2"]
 autoplay = "wave"
-anims/wave = SubResource( 10 )
-
-[node name="ForegroundParticles" type="Particles2D" parent="." index="5"]
-modulate = Color( 1, 1, 1, 0.294118 )
-position = Vector2( 640, 360 )
-amount = 16
-lifetime = 6.0
-preprocess = 6.0
-visibility_rect = Rect2( -1280, 0, 2560, 200 )
-process_material = SubResource( 8 )
-texture = ExtResource( 3 )
+anims/wave = SubResource( 12 )
 
 [node name="Fade" parent="Overlay" index="3" instance=ExtResource( 6 )]
-visible = false
 
 [node name="HiddenLabel" parent="Overlay/Fade" index="0"]
 margin_left = -307.0
 margin_right = 307.0
 text = "Somewhere in the Mediterranean Sea..."
 
-[node name="AnimationPlayer" parent="Overlay/Fade" index="1"]
-autoplay = ""
+[node name="HiddenLabel2" parent="Overlay/Fade" index="1" instance=ExtResource( 9 )]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -80.0
+margin_right = 83.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 21 )
+text = "The End"
+
+[node name="AnimationPlayer" parent="Overlay/Fade" index="2"]
+anims/fade_in = SubResource( 14 )
+anims/fade_out = SubResource( 15 )
+
+[node name="Music" parent="." index="7"]
+volume_db = -80.0
+
+[connection signal="body_entered" from="End" to="." method="_on_End_body_entered"]
 
 [editable path="Overlay/Fade"]

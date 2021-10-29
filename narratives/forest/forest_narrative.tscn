@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://narratives/narrative.tscn" type="PackedScene" id=1]
 [ext_resource path="res://narratives/fade.tscn" type="PackedScene" id=2]
@@ -10,20 +10,20 @@
 [ext_resource path="res://flea/flea.tscn" type="PackedScene" id=9]
 [ext_resource path="res://secret/secret.tscn" type="PackedScene" id=10]
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Gradient" id=14]
 offsets = PoolRealArray( 0, 0.260163, 0.674797, 1 )
-colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+colors = PoolColorArray( 1, 1, 1, 0, 0.380859, 0.380859, 0.380859, 1, 0.357422, 0.357422, 0.357422, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture" id=15]
+gradient = SubResource( 14 )
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=16]
 _data = [ Vector2( 0, 0.506818 ), 0.0, 0.565739, 0, 0, Vector2( 0.501859, 0.788636 ), 0.366819, 0.366819, 0, 0, Vector2( 1, 0.979545 ), 0.344175, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="CurveTexture" id=17]
+curve = SubResource( 16 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=18]
 emission_shape = 2
 emission_box_extents = Vector3( 640, 360, 1 )
 flag_disable_z = true
@@ -32,19 +32,32 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 20.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 1.5
+scale = 2.5
 scale_random = 0.5
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 2 )
+scale_curve = SubResource( 17 )
+color_ramp = SubResource( 15 )
 
-[sub_resource type="StreamTexture" id=6]
+[sub_resource type="StreamTexture" id=19]
 flags = 4
 load_path = "res://.import/particle.png-a428e996560c6428b24427d372f4e8d5.stex"
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 1280, 8 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="Gradient" id=20]
+offsets = PoolRealArray( 0, 0.260163, 0.674797, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 0.380859, 0.380859, 0.380859, 1, 0.357422, 0.357422, 0.357422, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=21]
+gradient = SubResource( 20 )
+
+[sub_resource type="Curve" id=22]
+_data = [ Vector2( 0, 0.506818 ), 0.0, 0.565739, 0, 0, Vector2( 0.501859, 0.788636 ), 0.366819, 0.366819, 0, 0, Vector2( 1, 0.979545 ), 0.344175, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=23]
+curve = SubResource( 22 )
+
+[sub_resource type="ParticlesMaterial" id=24]
 emission_shape = 2
 emission_box_extents = Vector3( 640, 360, 1 )
 flag_disable_z = true
@@ -55,29 +68,79 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.4
 scale_random = 0.25
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 2 )
-
-[sub_resource type="ParticlesMaterial" id=9]
-emission_shape = 2
-emission_box_extents = Vector3( 640, 360, 1 )
-flag_disable_z = true
-direction = Vector3( 0, -1, 0 )
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 20.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.4
-scale_random = 0.25
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 2 )
-
-[sub_resource type="StreamTexture" id=10]
-flags = 4
-load_path = "res://.import/particle.png-a428e996560c6428b24427d372f4e8d5.stex"
+scale_curve = SubResource( 23 )
+color_ramp = SubResource( 21 )
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 32, 128 )
+
+[sub_resource type="Animation" id=25]
+resource_name = "fade_in"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "fade_out"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../ClickMeLabel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=12]
 length = 7.0
@@ -128,6 +191,18 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../../Music:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 5, 7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -80.0, -80.0, -20.0 ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -182,6 +257,18 @@ tracks/3/keys = {
 "args": [  ],
 "method": "next_scene"
 } ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../../Music:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -20.0, -20.0, -80.0 ]
 }
 
 [node name="ForestNarrative" instance=ExtResource( 1 )]
@@ -267,53 +354,51 @@ texture = ExtResource( 5 )
 position = Vector2( 1080, 200 )
 texture = ExtResource( 5 )
 
-[node name="BackgroundParticles" type="Particles2D" parent="." index="2"]
+[node name="Particles2" type="ParallaxLayer" parent="ParallaxBackground" index="4"]
+motion_scale = Vector2( 0.5, 1 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="BackgroundParticles" type="Particles2D" parent="ParallaxBackground/Particles2" index="0"]
+modulate = Color( 0.513726, 0.513726, 0.513726, 0.431373 )
+position = Vector2( 640, 360 )
+amount = 16
+lifetime = 6.0
+preprocess = 6.0
+visibility_rect = Rect2( -3000, 0, 6000, 200 )
+process_material = SubResource( 18 )
+texture = SubResource( 19 )
+
+[node name="Particles" type="ParallaxLayer" parent="ParallaxBackground" index="5"]
+motion_scale = Vector2( 0.8, 1 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="BackgroundParticles" type="Particles2D" parent="ParallaxBackground/Particles" index="0"]
 modulate = Color( 1, 1, 1, 0.160784 )
 position = Vector2( 640, 360 )
+amount = 16
 lifetime = 6.0
 preprocess = 6.0
-visibility_rect = Rect2( -1280, 0, 2560, 200 )
-process_material = SubResource( 5 )
-texture = SubResource( 6 )
+visibility_rect = Rect2( -3000, 0, 6000, 200 )
+process_material = SubResource( 18 )
+texture = SubResource( 19 )
 
-[node name="BackgroundParticles2" type="Particles2D" parent="." index="3"]
-modulate = Color( 1, 1, 1, 0.160784 )
-position = Vector2( 1920, 360 )
-lifetime = 6.0
-preprocess = 6.0
-visibility_rect = Rect2( -1280, 0, 2560, 200 )
-process_material = SubResource( 5 )
-texture = SubResource( 6 )
-
-[node name="Flea" parent="." index="4" instance=ExtResource( 9 )]
+[node name="Flea" parent="." index="2" instance=ExtResource( 9 )]
 position = Vector2( 48, 424 )
 
-[node name="Marmot" parent="." index="5" instance=ExtResource( 3 )]
+[node name="Marmot" parent="." index="3" instance=ExtResource( 3 )]
 position = Vector2( 1624, 376 )
 
-[node name="Ground" type="StaticBody2D" parent="." index="6"]
+[node name="Ground" type="StaticBody2D" parent="." index="4"]
 position = Vector2( 640, 432 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" index="0"]
 position = Vector2( 640, 0 )
 shape = SubResource( 7 )
 
-[node name="ParallaxForeground" type="ParallaxBackground" parent="." index="7"]
+[node name="ParallaxForeground" type="ParallaxBackground" parent="." index="5"]
 layer = 0
 
-[node name="Ground" type="ParallaxLayer" parent="ParallaxForeground" index="0"]
-motion_mirroring = Vector2( 1280, 0 )
-
-[node name="Ground2" type="ColorRect" parent="ParallaxForeground/Ground" index="0"]
-margin_top = 424.0
-margin_right = 1280.0
-margin_bottom = 720.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Rocks" type="ParallaxLayer" parent="ParallaxForeground" index="1"]
+[node name="Rocks" type="ParallaxLayer" parent="ParallaxForeground" index="0"]
 motion_mirroring = Vector2( 1280, 0 )
 
 [node name="Rock" type="Polygon2D" parent="ParallaxForeground/Rocks" index="0"]
@@ -376,7 +461,7 @@ color = Color( 0, 0, 0, 1 )
 antialiased = true
 polygon = PoolVector2Array( 0, -8, 16, -16, 24, 0, 16, 8, -16, 8, -24, 0, -16, -8 )
 
-[node name="Grass" type="ParallaxLayer" parent="ParallaxForeground" index="2"]
+[node name="Grass" type="ParallaxLayer" parent="ParallaxForeground" index="1"]
 motion_mirroring = Vector2( 1280, 0 )
 
 [node name="Grass" type="Node2D" parent="ParallaxForeground/Grass" index="0"]
@@ -595,40 +680,63 @@ color = Color( 0, 0, 0, 1 )
 antialiased = true
 polygon = PoolVector2Array( -8, -48, 8, 0, 8.00002, 7.99997, 1.52588e-05, 8, 0, 0 )
 
-[node name="ForegroundParticles" type="Particles2D" parent="." index="8"]
+[node name="Particles" type="ParallaxLayer" parent="ParallaxForeground" index="2"]
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="ForegroundParticles" type="Particles2D" parent="ParallaxForeground/Particles" index="0"]
 modulate = Color( 1, 1, 1, 0.294118 )
 position = Vector2( 640, 360 )
-amount = 16
+amount = 32
 lifetime = 6.0
 preprocess = 6.0
-visibility_rect = Rect2( -1280, 0, 2560, 200 )
-process_material = SubResource( 8 )
+visibility_rect = Rect2( -3000, 0, 6000, 200 )
+process_material = SubResource( 24 )
 texture = ExtResource( 7 )
 
-[node name="ForegroundParticles2" type="Particles2D" parent="." index="9"]
-modulate = Color( 1, 1, 1, 0.294118 )
-position = Vector2( 1920, 360 )
-amount = 16
-lifetime = 6.0
-preprocess = 6.0
-visibility_rect = Rect2( -1280, 0, 2560, 200 )
-process_material = SubResource( 9 )
-texture = SubResource( 10 )
+[node name="Ground" type="ParallaxLayer" parent="ParallaxForeground" index="3"]
+motion_mirroring = Vector2( 1280, 0 )
 
-[node name="End" type="Area2D" parent="." index="10"]
+[node name="Ground2" type="ColorRect" parent="ParallaxForeground/Ground" index="0"]
+margin_top = 424.0
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="End" type="Area2D" parent="." index="6"]
 position = Vector2( 2120, 344 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="End" index="0"]
 shape = SubResource( 11 )
 
-[node name="Secret" parent="Secrets" index="0" instance=ExtResource( 10 )]
+[node name="Secret1" parent="Secrets" index="0" instance=ExtResource( 10 )]
 margin_left = 540.0
 margin_top = 148.0
 margin_right = 604.0
 margin_bottom = 212.0
 text = [ "Our story begins with the flea..." ]
 
-[node name="HiddenLabel" parent="Secrets/Secret/Hidden" index="0" instance=ExtResource( 8 )]
+[node name="ClickMeLabel" parent="Secrets/Secret1" index="0" instance=ExtResource( 8 )]
+margin_left = -7.125
+margin_top = -51.132
+margin_right = 73.875
+margin_bottom = -4.132
+text = "Click me"
+
+[node name="QuestionMarkButton" parent="Secrets/Secret1" index="1"]
+self_modulate = Color( 1, 1, 1, 0 )
+
+[node name="FadeAnimator" parent="Secrets/Secret1/QuestionMarkButton" index="3"]
+anims/fade_in = SubResource( 25 )
+anims/fade_out = SubResource( 26 )
+
+[node name="Hidden" parent="Secrets/Secret1" index="2"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+
+[node name="HiddenLabel" parent="Secrets/Secret1/Hidden" index="0" instance=ExtResource( 8 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -637,17 +745,9 @@ margin_left = -76.0
 margin_top = -23.5
 margin_right = 76.0
 margin_bottom = 23.5
-text = "Hold 'D' to move"
-
-[node name="HiddenLabel" parent="Secrets" index="1" instance=ExtResource( 8 )]
-margin_left = 552.875
-margin_top = 116.868
-margin_right = 633.875
-margin_bottom = 163.868
-text = "Click me"
+text = "Hold 'd' to move"
 
 [node name="Fade" parent="Overlay" index="3" instance=ExtResource( 2 )]
-visible = false
 
 [node name="HiddenLabel" parent="Overlay/Fade" index="0"]
 visible = false
@@ -658,6 +758,8 @@ anims/fade_out = SubResource( 13 )
 
 [connection signal="killed" from="Marmot" to="." method="_on_Marmot_killed"]
 [connection signal="body_entered" from="End" to="." method="_on_End_body_entered"]
+[connection signal="uncovered" from="Secrets/Secret1" to="." method="_on_Secret1_uncovered"]
 
-[editable path="Secrets/Secret"]
+[editable path="Secrets/Secret1"]
+[editable path="Secrets/Secret1/QuestionMarkButton"]
 [editable path="Overlay/Fade"]

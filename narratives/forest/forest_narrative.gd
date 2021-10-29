@@ -12,4 +12,7 @@ func _on_Marmot_killed():
 
 func next_scene():
 	var _ret = get_tree().change_scene("res://narratives/travelling/travelling_narrative.tscn")
-	print("Changed scene")
+
+
+func _on_Secret1_uncovered():
+	$Flea.active = true

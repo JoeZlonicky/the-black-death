@@ -1,6 +1,8 @@
 extends TextureRect
 
 
+signal finished
+
 var dialogue_queue = []
 var text_progress = 0.0
 var text_speed = 12
@@ -22,6 +24,9 @@ func _physics_process(delta):
 	if visible and $Label.visible_characters < $Label.text.length():
 		text_progress += delta * text_speed
 		$Label.visible_characters = int(text_progress)
+		if $Label.visible_characters >= $Label.text.length() and not dialogue_queue:
+			emit_signal("finished")
+	
 	elif visible and dialogue_queue:
 		$Prompt.visible = true
 
