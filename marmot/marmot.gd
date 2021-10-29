@@ -56,11 +56,9 @@ func kill():
 	tween.start()
 	yield(tween, "tween_completed")
 	remove_child(tween)
-	print("Done tween")
 	
 	$AnimationPlayer.play("die")
 	$AnimationPlayer.set_active(true)
 	active = false
 	yield($AnimationPlayer, "animation_finished")
 	emit_signal("killed")
-	print("Signal emitted")

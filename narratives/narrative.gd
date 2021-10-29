@@ -7,11 +7,3 @@ func _unhandled_input(event):
 		$Overlay/PauseMenu.visible = true
 		get_tree().set_input_as_handled()
 
-
-func _on_End_body_entered(body):
-	if body.is_in_group("marmot"):
-		body.kill()
-
-
-func _on_Marmot_killed():
-	$Overlay/Fade/AnimationPlayer.play("fade_out")
