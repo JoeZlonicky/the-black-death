@@ -14,5 +14,5 @@ func next_scene():
 	var _ret = get_tree().change_scene("res://narratives/travelling/travelling_narrative.tscn")
 
 
-func _on_Secret1_uncovered():
+func _on_Secret2_uncovered():
 	$Flea.active = true

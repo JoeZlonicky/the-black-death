@@ -5,7 +5,7 @@ signal finished
 
 var dialogue_queue = []
 var text_progress = 0.0
-var text_speed = 16
+var text_speed = 20
 
 func _ready():
 	visible = false

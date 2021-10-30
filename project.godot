@@ -11,8 +11,8 @@ config_version=4
 [application]
 
 config/name="Black Death"
-run/main_scene="res://narratives/city/city_narrative.tscn"
-config/icon="res://assets/art/icon.png"
+run/main_scene="res://menus/main_menu/main_menu.tscn"
+config/icon="res://icon.png"
 
 [display]
 

@@ -67,11 +67,19 @@ func fade_in():
 [sub_resource type="GDScript" id=7]
 script/source = "extends \"res://secret/secret.gd\"
 
+
+
+func fade_in():
+	.fade_in()
 "
 
 [sub_resource type="GDScript" id=8]
 script/source = "extends \"res://secret/secret.gd\"
 
+
+
+func fade_in():
+	.fade_in()
 "
 
 [sub_resource type="Animation" id=4]
@@ -267,7 +275,6 @@ script = SubResource( 8 )
 text = [ "Although it was a long journey, some fleas survived the trip, arriving in Kaffa ready to continue the spread of disease..." ]
 
 [node name="Fade" parent="Overlay" index="3" instance=ExtResource( 4 )]
-visible = false
 
 [node name="HiddenLabel" parent="Overlay/Fade" index="0"]
 modulate = Color( 1, 1, 1, 1 )
@@ -276,7 +283,6 @@ margin_right = 197.0
 text = "In the back of a wagon..."
 
 [node name="AnimationPlayer" parent="Overlay/Fade" index="1"]
-autoplay = ""
 anims/fade_in = SubResource( 4 )
 anims/fade_out = SubResource( 5 )
 
@@ -285,7 +291,9 @@ volume_db = -80.0
 
 [connection signal="uncovered" from="Secrets/Secret" to="Secrets/Secret2" method="fade_in"]
 [connection signal="uncovered" from="Secrets/Secret" to="." method="_on_Secret_uncovered"]
+[connection signal="uncovered" from="Secrets/Secret2" to="Secrets/Secret3" method="fade_in"]
 [connection signal="uncovered" from="Secrets/Secret2" to="." method="_on_Secret_uncovered"]
+[connection signal="uncovered" from="Secrets/Secret3" to="Secrets/Secret4" method="fade_in"]
 [connection signal="uncovered" from="Secrets/Secret3" to="." method="_on_Secret_uncovered"]
 [connection signal="uncovered" from="Secrets/Secret4" to="." method="_on_Secret_uncovered"]
 [connection signal="finished" from="Overlay/DialogueBox" to="." method="_on_DialogueBox_finished"]

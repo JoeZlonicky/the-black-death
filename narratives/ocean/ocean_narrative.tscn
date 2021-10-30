@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://narratives/narrative.tscn" type="PackedScene" id=1]
 [ext_resource path="res://boat/boat.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://narratives/ocean/ocean_narrative.gd" type="Script" id=7]
 [ext_resource path="res://assets/fonts/ScheherazadeNew/ScheherazadeNew.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://ui/hidden_label/hidden_label.tscn" type="PackedScene" id=9]
+[ext_resource path="res://secret/secret.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "wave"
@@ -76,20 +77,20 @@ tracks/0/keys = {
 "values": [ 0.0, 5.0, 0.0 ]
 }
 
-[sub_resource type="Gradient" id=16]
+[sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.260163, 0.674797, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 0.380859, 0.380859, 0.380859, 1, 0.357422, 0.357422, 0.357422, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=17]
-gradient = SubResource( 16 )
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
 
-[sub_resource type="Curve" id=18]
+[sub_resource type="Curve" id=7]
 _data = [ Vector2( 0, 0.506818 ), 0.0, 0.565739, 0, 0, Vector2( 0.501859, 0.788636 ), 0.366819, 0.366819, 0, 0, Vector2( 1, 0.979545 ), 0.344175, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=19]
-curve = SubResource( 18 )
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=9]
 emission_shape = 2
 emission_box_extents = Vector3( 640, 360, 1 )
 flag_disable_z = true
@@ -100,17 +101,17 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 2.5
 scale_random = 0.5
-scale_curve = SubResource( 19 )
-color_ramp = SubResource( 17 )
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 6 )
 
-[sub_resource type="StreamTexture" id=6]
+[sub_resource type="StreamTexture" id=10]
 flags = 4
 load_path = "res://.import/particle.png-a428e996560c6428b24427d372f4e8d5.stex"
 
-[sub_resource type="RectangleShape2D" id=20]
-extents = Vector2( 10, 72 )
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 10, 224 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=12]
 emission_shape = 2
 emission_box_extents = Vector3( 640, 360, 1 )
 flag_disable_z = true
@@ -121,10 +122,10 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.4
 scale_random = 0.25
-scale_curve = SubResource( 19 )
-color_ramp = SubResource( 17 )
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 6 )
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=13]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -140,7 +141,7 @@ tracks/0/keys = {
 "values": [ 0.0, -5.0, 0.0, 5.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=14]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:motion_offset:y")
@@ -155,11 +156,11 @@ tracks/0/keys = {
 "values": [ 0.0, 5.0, 0.0 ]
 }
 
-[sub_resource type="DynamicFont" id=21]
+[sub_resource type="DynamicFont" id=15]
 size = 52
 font_data = ExtResource( 8 )
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=16]
 length = 7.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -234,8 +235,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=15]
-resource_name = "fade_out"
+[sub_resource type="Animation" id=17]
 length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("HiddenLabel:visible")
@@ -390,8 +390,8 @@ amount = 16
 lifetime = 6.0
 preprocess = 6.0
 visibility_rect = Rect2( -3000, 0, 6000, 200 )
-process_material = SubResource( 5 )
-texture = SubResource( 6 )
+process_material = SubResource( 9 )
+texture = SubResource( 10 )
 
 [node name="Particles" type="ParallaxLayer" parent="ParallaxBackground" index="4"]
 motion_scale = Vector2( 0.8, 1 )
@@ -404,16 +404,16 @@ amount = 16
 lifetime = 6.0
 preprocess = 6.0
 visibility_rect = Rect2( -3000, 0, 6000, 200 )
-process_material = SubResource( 5 )
-texture = SubResource( 6 )
+process_material = SubResource( 9 )
+texture = SubResource( 10 )
 
 [node name="Boat" parent="." index="2" instance=ExtResource( 2 )]
 
 [node name="End" type="Area2D" parent="." index="3"]
-position = Vector2( 1264, 344 )
+position = Vector2( 10200, 256 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="End" index="0"]
-shape = SubResource( 20 )
+shape = SubResource( 11 )
 
 [node name="ParallaxForeground" type="ParallaxBackground" parent="." index="4"]
 layer = 0
@@ -428,7 +428,7 @@ amount = 32
 lifetime = 6.0
 preprocess = 6.0
 visibility_rect = Rect2( -3000, 0, 6000, 200 )
-process_material = SubResource( 7 )
+process_material = SubResource( 12 )
 texture = ExtResource( 3 )
 
 [node name="Ground" type="ParallaxLayer" parent="ParallaxForeground" index="1"]
@@ -452,20 +452,78 @@ texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxForeground/CloseWater" index="1"]
 autoplay = "wave"
-anims/wave = SubResource( 11 )
+anims/wave = SubResource( 13 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="ParallaxForeground/CloseWater" index="2"]
 autoplay = "wave"
-anims/wave = SubResource( 12 )
+anims/wave = SubResource( 14 )
+
+[node name="Secret" parent="Secrets" index="0" instance=ExtResource( 10 )]
+margin_left = 588.0
+margin_top = 108.0
+margin_right = 652.0
+margin_bottom = 172.0
+text = [ "By the end of 1347, the Black Death had begun to spread to other cities... It would ravish the various countries bordering the Mediterranean before moving onto England and Scandinavia." ]
+
+[node name="Secret2" parent="Secrets" index="1" instance=ExtResource( 10 )]
+margin_left = 1604.0
+margin_top = 140.0
+margin_right = 1668.0
+margin_bottom = 204.0
+text = [ "Some cities attempted to slow the spread by turning away foreign ships. In Venice, ships were required to wait 40 days in the harbor before coming ashore." ]
+
+[node name="Secret3" parent="Secrets" index="2" instance=ExtResource( 10 )]
+margin_left = 2708.0
+margin_top = 76.0
+margin_right = 2772.0
+margin_bottom = 140.0
+text = [ "At the time, there was no cure for the plague. It wouldn't be until much later that antibiotics would be discovered." ]
+
+[node name="Secret4" parent="Secrets" index="3" instance=ExtResource( 10 )]
+margin_left = 3900.0
+margin_top = 100.0
+margin_right = 3964.0
+margin_bottom = 164.0
+text = [ "In some cities, over half of the population was killed by the plague..." ]
+
+[node name="Secret5" parent="Secrets" index="4" instance=ExtResource( 10 )]
+margin_left = 4996.0
+margin_top = 52.0
+margin_right = 5060.0
+margin_bottom = 116.0
+text = [ "Islamic communities were cleaner and had improved medicine, which contributed to fewer deaths overall." ]
+
+[node name="Secret7" parent="Secrets" index="5" instance=ExtResource( 10 )]
+margin_left = 6140.0
+margin_top = 100.0
+margin_right = 6204.0
+margin_bottom = 164.0
+text = [ "In the end, over a quarter of Europe's population would be killed..." ]
+
+[node name="Secret6" parent="Secrets" index="6" instance=ExtResource( 10 )]
+margin_left = 7364.0
+margin_top = 36.0
+margin_right = 7428.0
+margin_bottom = 100.0
+text = [ "As a result of the pandemic, labor was in higher demand. This led to better compensation for work, improving the lives of many peasants who survived the ordeal." ]
+
+[node name="Secret8" parent="Secrets" index="7" instance=ExtResource( 10 )]
+margin_left = 8548.0
+margin_top = 100.0
+margin_right = 8612.0
+margin_bottom = 164.0
+text = [ "No matter the benefits, the world would never be the same..." ]
 
 [node name="Fade" parent="Overlay" index="3" instance=ExtResource( 6 )]
 
 [node name="HiddenLabel" parent="Overlay/Fade" index="0"]
+modulate = Color( 1, 1, 1, 1 )
 margin_left = -307.0
 margin_right = 307.0
 text = "Somewhere in the Mediterranean Sea..."
 
 [node name="HiddenLabel2" parent="Overlay/Fade" index="1" instance=ExtResource( 9 )]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -475,12 +533,12 @@ margin_left = -80.0
 margin_top = -80.0
 margin_right = 83.0
 margin_bottom = 27.0
-custom_fonts/font = SubResource( 21 )
+custom_fonts/font = SubResource( 15 )
 text = "The End"
 
 [node name="AnimationPlayer" parent="Overlay/Fade" index="2"]
-anims/fade_in = SubResource( 14 )
-anims/fade_out = SubResource( 15 )
+anims/fade_in = SubResource( 16 )
+anims/fade_out = SubResource( 17 )
 
 [node name="Music" parent="." index="7"]
 volume_db = -80.0

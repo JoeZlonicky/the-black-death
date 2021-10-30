@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://narratives/narrative.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rat/rat.tscn" type="PackedScene" id=2]
@@ -6,19 +6,20 @@
 [ext_resource path="res://assets/art/leg.png" type="Texture" id=4]
 [ext_resource path="res://narratives/fade.tscn" type="PackedScene" id=5]
 [ext_resource path="res://narratives/city/city_narrative.gd" type="Script" id=6]
+[ext_resource path="res://secret/secret.tscn" type="PackedScene" id=7]
 
-[sub_resource type="Gradient" id=16]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.260163, 0.674797, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 0.380859, 0.380859, 0.380859, 1, 0.357422, 0.357422, 0.357422, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=17]
-gradient = SubResource( 16 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="Curve" id=18]
+[sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 0.506818 ), 0.0, 0.565739, 0, 0, Vector2( 0.501859, 0.788636 ), 0.366819, 0.366819, 0, 0, Vector2( 1, 0.979545 ), 0.344175, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=19]
-curve = SubResource( 18 )
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
 
 [sub_resource type="ParticlesMaterial" id=5]
 emission_shape = 2
@@ -31,17 +32,17 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 2.5
 scale_random = 0.5
-scale_curve = SubResource( 19 )
-color_ramp = SubResource( 17 )
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
 
 [sub_resource type="StreamTexture" id=6]
 flags = 4
 load_path = "res://.import/particle.png-a428e996560c6428b24427d372f4e8d5.stex"
 
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 24, 88 )
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 24, 224 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=8]
 emission_shape = 2
 emission_box_extents = Vector3( 640, 360, 1 )
 flag_disable_z = true
@@ -52,10 +53,10 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.4
 scale_random = 0.25
-scale_curve = SubResource( 19 )
-color_ramp = SubResource( 17 )
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 7.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -118,8 +119,7 @@ tracks/4/keys = {
 "values": [ -80.0, -80.0, -20.0 ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "fade_out"
+[sub_resource type="Animation" id=10]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("HiddenLabel:visible")
@@ -273,12 +273,13 @@ texture = SubResource( 6 )
 
 [node name="Rat" parent="." index="2" instance=ExtResource( 2 )]
 position = Vector2( 88, 379 )
+speed = 160.0
 
 [node name="End" type="Area2D" parent="." index="3"]
-position = Vector2( 1256, 296 )
+position = Vector2( 18088, 184 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="End" index="0"]
-shape = SubResource( 10 )
+shape = SubResource( 7 )
 
 [node name="ParallaxForeground" type="ParallaxBackground" parent="." index="4"]
 layer = 0
@@ -575,7 +576,7 @@ amount = 32
 lifetime = 6.0
 preprocess = 6.0
 visibility_rect = Rect2( -3000, 0, 6000, 200 )
-process_material = SubResource( 7 )
+process_material = SubResource( 8 )
 texture = ExtResource( 3 )
 
 [node name="Ground" type="ParallaxLayer" parent="ParallaxForeground" index="3"]
@@ -590,17 +591,90 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Secret" parent="Secrets" index="0" instance=ExtResource( 7 )]
+margin_left = 620.0
+margin_top = 172.0
+margin_right = 684.0
+margin_bottom = 236.0
+text = [ "Once the pathogen got into cities, fleas would infect the various furry inhabitants. Most notably, rats." ]
+
+[node name="Secret4" parent="Secrets" index="1" instance=ExtResource( 7 )]
+margin_left = 2036.0
+margin_top = 148.0
+margin_right = 2100.0
+margin_bottom = 212.0
+text = [ "At the time, cities were extremely susceptible to disease. They were overcrowded, had poor sanitation, and were  overall filthy." ]
+
+[node name="Secret5" parent="Secrets" index="2" instance=ExtResource( 7 )]
+margin_left = 3468.0
+margin_top = 132.0
+margin_right = 3532.0
+margin_bottom = 196.0
+text = [ "Furthermore, the transmission of disease was not understood. Many believed disease to be the result of miasma, \"bad air\"." ]
+
+[node name="Secret6" parent="Secrets" index="3" instance=ExtResource( 7 )]
+margin_left = 5076.0
+margin_top = 116.0
+margin_right = 5140.0
+margin_bottom = 180.0
+text = [ "The pathogen was able to spread to humans through fleas, contact with contaminated tissue, or even cough droplets of those with the pneumonic variant." ]
+
+[node name="Secret7" parent="Secrets" index="4" instance=ExtResource( 7 )]
+margin_left = 6884.0
+margin_top = 124.0
+margin_right = 6948.0
+margin_bottom = 188.0
+text = [ "Once infected, the immune system is typically overwhelmed through the rapid reproduction of the bacteria." ]
+
+[node name="Secret8" parent="Secrets" index="5" instance=ExtResource( 7 )]
+margin_left = 8628.0
+margin_top = 68.0
+margin_right = 8692.0
+margin_bottom = 132.0
+text = [ "Symptoms typically started with a fever, followed by swelling lymph nodes. The following days would consist of high fever, diarrhea, delirium, and black splotches appearing on the skin." ]
+
+[node name="Secret9" parent="Secrets" index="6" instance=ExtResource( 7 )]
+margin_left = 10316.0
+margin_top = 28.0
+margin_right = 10380.0
+margin_bottom = 92.0
+text = [ "Many would succumb to the disease. Those with the pneumonic varient had an extremely low survival rate, some even dying within hours of symptoms first occuring." ]
+
+[node name="Secret10" parent="Secrets" index="7" instance=ExtResource( 7 )]
+margin_left = 12052.0
+margin_top = 44.0
+margin_right = 12116.0
+margin_bottom = 108.0
+text = [ "It is difficult to say exactly what the fatality rate was, due to lack of reliable recordings. However, those lucky enough to survive the infection experienced almost full immunity to the disease." ]
+
+[node name="Secret2" parent="Secrets" index="8" instance=ExtResource( 7 )]
+margin_left = 14028.0
+margin_top = -4.0
+margin_right = 14092.0
+margin_bottom = 60.0
+text = [ "Due to the fleas preference of animal hosts over humans, the presence of the pathogen wasn't immediately apparent. It was only when the rat populations dropped that they turned to humans." ]
+
+[node name="Secret3" parent="Secrets" index="9" instance=ExtResource( 7 )]
+margin_left = 16116.0
+margin_top = 4.0
+margin_right = 16180.0
+margin_bottom = 68.0
+text = [ "This had devastating consequences. As Kaffa was a port city, the pathogen was able to spread over-seas through rat-infested ships before it was even on the radar..." ]
+
 [node name="Fade" parent="Overlay" index="3" instance=ExtResource( 5 )]
 
 [node name="HiddenLabel" parent="Overlay/Fade" index="0"]
-visible = false
+modulate = Color( 1, 1, 1, 1 )
 margin_left = -187.5
 margin_right = 187.5
 text = "In the streets of Kaffa..."
 
 [node name="AnimationPlayer" parent="Overlay/Fade" index="1"]
-anims/fade_in = SubResource( 8 )
-anims/fade_out = SubResource( 9 )
+anims/fade_in = SubResource( 9 )
+anims/fade_out = SubResource( 10 )
+
+[node name="Music" parent="." index="7"]
+volume_db = -80.0
 
 [connection signal="body_entered" from="End" to="." method="_on_End_body_entered"]
 
